@@ -1,0 +1,6 @@
+{
+  "name": "Kamla Infra Ghana",
+  "description": "Premium excavator sales, machinery trading, and equipment rental solutions in Ghana.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
