@@ -61,19 +61,19 @@ export const GhanaCoverageMap: React.FC = () => {
   const activeHubData = hubs.find((h) => h.id === selectedHub) || hubs[0];
 
   return (
-    <section className="py-20 lg:py-28 bg-slate-50 border-b border-slate-200">
+    <section className="py-20 lg:py-28 bg-zinc-50 border-b border-zinc-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="max-w-3xl mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white border border-slate-200 text-[#0B3B60] text-xs font-bold uppercase tracking-wider mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white border border-zinc-200 text-[#18181B] text-xs font-bold uppercase tracking-wider mb-3">
             <Navigation className="w-3.5 h-3.5 text-[#E85D04]" />
             <span>Nationwide Ghana Logistics</span>
           </div>
-          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-black text-[#0B3B60] tracking-tight">
+          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-black text-[#18181B] tracking-tight">
             Strategically Deployed Across Ghana
           </h2>
-          <p className="mt-3 text-base text-slate-600">
+          <p className="mt-3 text-base text-zinc-600">
             From the bustling port of Tema to the deepest gold mines of the Western Region, our machinery and mobile technicians are positioned for rapid site mobilization.
           </p>
         </div>
@@ -89,22 +89,22 @@ export const GhanaCoverageMap: React.FC = () => {
                 onClick={() => setSelectedHub(hub.id)}
                 className={`p-5 rounded-xl border transition-all cursor-pointer ${
                   selectedHub === hub.id
-                    ? 'bg-white border-[#0B3B60] shadow-md ring-1 ring-[#0B3B60]'
-                    : 'bg-white/60 border-slate-200 hover:bg-white hover:border-slate-300'
+                    ? 'bg-white border-[#18181B] shadow-md ring-1 ring-[#18181B]'
+                    : 'bg-white/60 border-zinc-200 hover:bg-white hover:border-zinc-300'
                 }`}
               >
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-[11px] font-bold text-[#E85D04] uppercase tracking-wider">
                     {hub.region}
                   </span>
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-700">
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-zinc-100 text-zinc-700">
                     {hub.dispatchTime}
                   </span>
                 </div>
-                <h4 className="font-heading text-base font-bold text-slate-900">
+                <h4 className="font-heading text-base font-bold text-zinc-900">
                   {hub.title}
                 </h4>
-                <p className="text-xs text-slate-500 mt-1">
+                <p className="text-xs text-zinc-500 mt-1">
                   {hub.status}
                 </p>
               </div>
@@ -112,41 +112,41 @@ export const GhanaCoverageMap: React.FC = () => {
           </div>
 
           {/* Active Hub Detail Card */}
-          <div className="lg:col-span-7 bg-white rounded-2xl p-7 sm:p-8 border border-slate-200 shadow-sm">
-            <div className="flex items-start justify-between border-b border-slate-100 pb-5 mb-6">
+          <div className="lg:col-span-7 bg-white rounded-2xl p-7 sm:p-8 border border-zinc-200 shadow-sm">
+            <div className="flex items-start justify-between border-b border-zinc-100 pb-5 mb-6">
               <div>
                 <span className="text-xs font-bold text-[#E85D04] uppercase tracking-wider block">
                   {activeHubData.region} Hub
                 </span>
-                <h3 className="font-heading text-2xl font-black text-[#0B3B60]">
+                <h3 className="font-heading text-2xl font-black text-[#18181B]">
                   {activeHubData.title}
                 </h3>
               </div>
-              <div className="w-10 h-10 rounded-xl bg-slate-100 text-[#0B3B60] flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-zinc-100 text-[#18181B] flex items-center justify-center">
                 <Building2 className="w-5 h-5" />
               </div>
             </div>
 
             {/* Metrics */}
             <div className="grid grid-cols-2 gap-3 mb-6">
-              <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
-                <span className="text-[10px] text-slate-400 block uppercase font-semibold">Mobilization SLA</span>
-                <strong className="text-slate-900 font-bold text-sm">{activeHubData.dispatchTime}</strong>
+              <div className="p-3.5 rounded-xl bg-zinc-50 border border-zinc-200">
+                <span className="text-[10px] text-zinc-400 block uppercase font-semibold">Mobilization SLA</span>
+                <strong className="text-zinc-900 font-bold text-sm">{activeHubData.dispatchTime}</strong>
               </div>
-              <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
-                <span className="text-[10px] text-slate-400 block uppercase font-semibold">Capacity</span>
-                <strong className="text-slate-900 font-bold text-sm">{activeHubData.fleetCount}</strong>
+              <div className="p-3.5 rounded-xl bg-zinc-50 border border-zinc-200">
+                <span className="text-[10px] text-zinc-400 block uppercase font-semibold">Capacity</span>
+                <strong className="text-zinc-900 font-bold text-sm">{activeHubData.fleetCount}</strong>
               </div>
             </div>
 
             {/* Operational Capabilities */}
             <div className="space-y-3">
-              <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+              <h4 className="text-xs font-bold text-zinc-500 uppercase tracking-wider">
                 Base Infrastructure & Field Capabilities
               </h4>
               <div className="space-y-2.5">
                 {activeHubData.capabilities.map((cap, cIdx) => (
-                  <div key={cIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700">
+                  <div key={cIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-700">
                     <CheckCircle2 className="w-4 h-4 text-[#E85D04] shrink-0 mt-0.5" />
                     <span>{cap}</span>
                   </div>
@@ -155,13 +155,13 @@ export const GhanaCoverageMap: React.FC = () => {
             </div>
 
             {/* Mobilize Action */}
-            <div className="mt-8 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <span className="text-xs text-slate-500">
+            <div className="mt-8 pt-6 border-t border-zinc-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <span className="text-xs text-zinc-500">
                 Lowbed trailer transport organized directly to your GPS coordinates.
               </span>
               <a
                 href="#contact"
-                className="px-5 py-2.5 bg-[#0B3B60] hover:bg-[#07253D] text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-colors whitespace-nowrap shadow-sm"
+                className="px-5 py-2.5 bg-[#18181B] hover:bg-[#09090B] text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-colors whitespace-nowrap shadow-sm"
               >
                 Inquire Site Mobilization
               </a>

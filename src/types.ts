@@ -1,4 +1,4 @@
-export type EquipmentCategory = 'all' | '20t-earthmover' | '30t-infrastructure' | '50t-mining' | 'long-reach' | 'compact';
+export type EquipmentCategory = 'all' | 'excavator' | 'wheel-loader' | 'ev-equipment' | 'mining' | 'long-reach';
 
 export type ServiceType = 'sales' | 'rental' | 'trading' | 'spares';
 
@@ -8,11 +8,13 @@ export interface EquipmentItem {
   model: string;
   category: EquipmentCategory;
   categoryLabel: string;
-  brand: 'Caterpillar' | 'Komatsu' | 'SANY' | 'Hyundai' | 'Hitachi';
+  type: 'Excavator' | 'Wheel Loader';
+  brand: 'Caterpillar' | 'Komatsu' | 'SANY' | 'Hyundai' | 'Hitachi' | 'XCMG' | 'LiuGong' | 'Tata Hitachi' | 'JCB';
   operatingWeight: string;
   bucketCapacity: string;
   enginePower: string;
-  maxDiggingDepth: string;
+  maxDiggingDepth?: string; // Optional for wheel loaders
+  payload?: string; // For wheel loaders
   yearOfManufacture: number;
   condition: 'Brand New' | 'Certified Pre-Owned' | 'Rental Ready';
   availability: 'Ready for Dispatch' | 'On Site (Book Next)' | 'In Yard - Tema';
@@ -22,13 +24,14 @@ export interface EquipmentItem {
   description: string;
   highlightFeatures: string[];
   specs: {
-    engineModel: string;
-    operatingWeightKg: number;
-    hydraulicFlow: string;
-    fuelTankCapacity: string;
-    groundPressure: string;
+    engineModel?: string;
+    operatingWeightKg?: number;
+    hydraulicFlow?: string;
+    fuelTankCapacity?: string;
+    groundPressure?: string;
     boomLength?: string;
-    trackShoeWidth: string;
+    trackShoeWidth?: string;
+    dumpClearance?: string; // Added for wheel loaders
   };
   suitableFor: string[];
 }

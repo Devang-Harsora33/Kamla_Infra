@@ -62,7 +62,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans selection:bg-[#E85D04] selection:text-white">
+    <div className="min-h-screen bg-zinc-50 text-zinc-900 flex flex-col font-sans selection:bg-[#E85D04] selection:text-white">
       {/* Header & Navbar (5 Pages) */}
       <Navbar
         onOpenQuoteModal={handleOpenQuoteModal}
@@ -119,7 +119,7 @@ export default function App() {
 
           <button
             onClick={() => handleOpenQuoteModal('sales')}
-            className="px-4 py-2.5 rounded-full bg-[#0B3B60] text-white shadow-xl hover:bg-[#07253D] transition-all flex items-center gap-2 text-xs font-bold border-2 border-white"
+            className="px-4 py-2.5 rounded-full bg-[#18181B] text-white shadow-xl hover:bg-[#09090B] transition-all flex items-center gap-2 text-xs font-bold border-2 border-white"
           >
             <Phone className="w-3.5 h-3.5 text-[#E85D04]" />
             <span>Instant Quote</span>

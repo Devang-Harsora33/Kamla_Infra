@@ -12,7 +12,7 @@ export const Logo: React.FC<LogoProps> = ({
   showTagline = true,
 }) => {
   const isWhite = variant === 'white';
-  const navyColor = isWhite ? '#FFFFFF' : '#0B3B60';
+  const navyColor = isWhite ? '#FFFFFF' : '#18181B';
   const orangeColor = '#E85D04';
   const slateColor = isWhite ? '#CBD5E1' : '#475569';
 

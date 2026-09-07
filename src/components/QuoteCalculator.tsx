@@ -48,7 +48,7 @@ export const QuoteCalculator: React.FC = () => {
   };
 
   return (
-    <section id="calculator" className="py-20 lg:py-28 bg-slate-900 text-white border-b border-slate-800">
+    <section id="calculator" className="py-20 lg:py-28 bg-zinc-900 text-white border-b border-zinc-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -60,7 +60,7 @@ export const QuoteCalculator: React.FC = () => {
           <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
             Equipment Quote & Logistics Calculator
           </h2>
-          <p className="mt-3 text-slate-400 text-sm sm:text-base">
+          <p className="mt-3 text-zinc-400 text-sm sm:text-base">
             Configure your machinery requirements in Ghana for an immediate specification estimate and rapid mobilization quotation.
           </p>
         </div>
@@ -68,14 +68,14 @@ export const QuoteCalculator: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Left Form Configuration */}
-          <div className="lg:col-span-7 bg-slate-800/80 rounded-2xl p-6 sm:p-8 border border-slate-700/80 shadow-xl">
+          <div className="lg:col-span-7 bg-zinc-800/80 rounded-2xl p-6 sm:p-8 border border-zinc-700/80 shadow-xl">
             {submitted ? (
               <div className="text-center py-12 space-y-4">
                 <div className="w-16 h-16 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center mx-auto">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
                 <h3 className="text-2xl font-bold font-heading text-white">Quotation Request Received</h3>
-                <p className="text-sm text-slate-300 max-w-md mx-auto">
+                <p className="text-sm text-zinc-300 max-w-md mx-auto">
                   Thank you, <strong>{fullName || 'Valued Client'}</strong>. Our machinery logistics desk in Tema has received your request for <strong>{selectedMachine.name}</strong> at <strong>{selectedLocationObj.label}</strong>.
                 </p>
                 <div className="pt-4 flex flex-col sm:flex-row justify-center gap-3">
@@ -91,7 +91,7 @@ export const QuoteCalculator: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setSubmitted(false)}
-                    className="px-4 py-3 bg-slate-700 hover:bg-slate-600 text-slate-200 text-xs font-bold rounded-lg"
+                    className="px-4 py-3 bg-zinc-700 hover:bg-zinc-600 text-zinc-200 text-xs font-bold rounded-lg"
                   >
                     Modify Request
                   </button>
@@ -102,7 +102,7 @@ export const QuoteCalculator: React.FC = () => {
                 
                 {/* Step 1: Service Type */}
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-zinc-400 mb-2">
                     1. Select Service Type
                   </label>
                   <div className="grid grid-cols-3 gap-2">
@@ -118,7 +118,7 @@ export const QuoteCalculator: React.FC = () => {
                         className={`py-2.5 px-3 rounded-lg text-xs font-bold transition-all border ${
                           serviceType === st.id
                             ? 'bg-[#E85D04] text-white border-[#E85D04] shadow'
-                            : 'bg-slate-900/60 text-slate-300 border-slate-700 hover:bg-slate-700'
+                            : 'bg-zinc-900/60 text-zinc-300 border-zinc-700 hover:bg-zinc-700'
                         }`}
                       >
                         {st.label}
@@ -129,7 +129,7 @@ export const QuoteCalculator: React.FC = () => {
 
                 {/* Step 2: Excavator Class */}
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-zinc-400 mb-2">
                     2. Required Machinery Class
                   </label>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -145,12 +145,12 @@ export const QuoteCalculator: React.FC = () => {
                         onClick={() => setTonnageClass(ton.id)}
                         className={`p-3 rounded-lg text-left transition-all border ${
                           tonnageClass === ton.id
-                            ? 'bg-white text-slate-900 border-white shadow'
-                            : 'bg-slate-900/60 text-slate-300 border-slate-700 hover:bg-slate-700'
+                            ? 'bg-white text-zinc-900 border-white shadow'
+                            : 'bg-zinc-900/60 text-zinc-300 border-zinc-700 hover:bg-zinc-700'
                         }`}
                       >
                         <span className="block font-bold text-xs">{ton.label}</span>
-                        <span className="block text-[10px] text-slate-400">{ton.sub}</span>
+                        <span className="block text-[10px] text-zinc-400">{ton.sub}</span>
                       </button>
                     ))}
                   </div>
@@ -159,13 +159,13 @@ export const QuoteCalculator: React.FC = () => {
                 {/* Step 3: Location in Ghana & Project Type */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
+                    <label className="block text-xs font-bold uppercase tracking-wider text-zinc-400 mb-2">
                       3. Project Site Location (Ghana)
                     </label>
                     <select
                       value={location}
                       onChange={(e) => setLocation(e.target.value)}
-                      className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#E85D04]"
+                      className="w-full bg-zinc-900 border border-zinc-700 rounded-lg px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#E85D04]"
                     >
                       {GHANA_LOCATIONS.map((loc) => (
                         <option key={loc.value} value={loc.value}>
@@ -176,13 +176,13 @@ export const QuoteCalculator: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
+                    <label className="block text-xs font-bold uppercase tracking-wider text-zinc-400 mb-2">
                       4. Project Industry Sector
                     </label>
                     <select
                       value={projectSector}
                       onChange={(e) => setProjectSector(e.target.value)}
-                      className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#E85D04]"
+                      className="w-full bg-zinc-900 border border-zinc-700 rounded-lg px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#E85D04]"
                     >
                       <option value="road-civil">Road Construction & Civil Infrastructure</option>
                       <option value="mining-gold">Mining & Mineral Concession (Gold/Bauxite)</option>
@@ -195,15 +195,15 @@ export const QuoteCalculator: React.FC = () => {
 
                 {/* Step 4: Duration & Operator */}
                 {serviceType === 'rental' && (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-slate-700/60">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-zinc-700/60">
                     <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
+                      <label className="block text-xs font-bold uppercase tracking-wider text-zinc-400 mb-2">
                         Rental Estimated Duration
                       </label>
                       <select
                         value={duration}
                         onChange={(e) => setDuration(e.target.value)}
-                        className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#E85D04]"
+                        className="w-full bg-zinc-900 border border-zinc-700 rounded-lg px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#E85D04]"
                       >
                         <option value="1-2-weeks">Short Term (1 - 2 Weeks)</option>
                         <option value="1-month">1 Month Standard Contract</option>
@@ -218,9 +218,9 @@ export const QuoteCalculator: React.FC = () => {
                         id="operator-check"
                         checked={needOperator}
                         onChange={(e) => setNeedOperator(e.target.checked)}
-                        className="w-4 h-4 text-[#E85D04] rounded border-slate-700 focus:ring-[#E85D04]"
+                        className="w-4 h-4 text-[#E85D04] rounded border-zinc-700 focus:ring-[#E85D04]"
                       />
-                      <label htmlFor="operator-check" className="text-xs text-slate-300 font-medium cursor-pointer">
+                      <label htmlFor="operator-check" className="text-xs text-zinc-300 font-medium cursor-pointer">
                         Include Certified Heavy Machine Operator
                       </label>
                     </div>
@@ -228,8 +228,8 @@ export const QuoteCalculator: React.FC = () => {
                 )}
 
                 {/* Contact Information */}
-                <div className="pt-4 border-t border-slate-700/60 space-y-4">
-                  <span className="block text-xs font-bold uppercase tracking-wider text-slate-400">
+                <div className="pt-4 border-t border-zinc-700/60 space-y-4">
+                  <span className="block text-xs font-bold uppercase tracking-wider text-zinc-400">
                     Your Contact & Company Details
                   </span>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -239,14 +239,14 @@ export const QuoteCalculator: React.FC = () => {
                       placeholder="Full Name / Project Engineer *"
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
-                      className="bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#E85D04]"
+                      className="bg-zinc-900 border border-zinc-700 rounded-lg px-3.5 py-2 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-[#E85D04]"
                     />
                     <input
                       type="text"
                       placeholder="Company / Contracting Firm"
                       value={companyName}
                       onChange={(e) => setCompanyName(e.target.value)}
-                      className="bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#E85D04]"
+                      className="bg-zinc-900 border border-zinc-700 rounded-lg px-3.5 py-2 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-[#E85D04]"
                     />
                     <input
                       type="tel"
@@ -254,7 +254,7 @@ export const QuoteCalculator: React.FC = () => {
                       placeholder="Phone / WhatsApp Number *"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#E85D04]"
+                      className="bg-zinc-900 border border-zinc-700 rounded-lg px-3.5 py-2 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-[#E85D04]"
                     />
                     <input
                       type="email"
@@ -262,7 +262,7 @@ export const QuoteCalculator: React.FC = () => {
                       placeholder="Official Email Address *"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#E85D04]"
+                      className="bg-zinc-900 border border-zinc-700 rounded-lg px-3.5 py-2 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-[#E85D04]"
                     />
                   </div>
                 </div>
@@ -279,13 +279,13 @@ export const QuoteCalculator: React.FC = () => {
           </div>
 
           {/* Right Summary Specification Preview Card */}
-          <div className="lg:col-span-5 bg-white text-slate-900 rounded-2xl p-6 sm:p-7 shadow-xl border border-slate-200">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
+          <div className="lg:col-span-5 bg-white text-zinc-900 rounded-2xl p-6 sm:p-7 shadow-xl border border-zinc-200">
+            <div className="flex items-center justify-between border-b border-zinc-100 pb-4 mb-4">
               <div>
                 <span className="text-[10px] font-bold text-[#E85D04] uppercase tracking-wider">
                   Recommended Equipment Match
                 </span>
-                <h3 className="font-heading text-lg font-bold text-[#0B3B60]">
+                <h3 className="font-heading text-lg font-bold text-[#18181B]">
                   {selectedMachine.name}
                 </h3>
               </div>
@@ -295,7 +295,7 @@ export const QuoteCalculator: React.FC = () => {
             </div>
 
             {/* Machine Mini Preview */}
-            <div className="rounded-xl overflow-hidden aspect-[16/9] mb-4 relative bg-slate-900">
+            <div className="rounded-xl overflow-hidden aspect-[16/9] mb-4 relative bg-zinc-900">
               <img
                 src={selectedMachine.image}
                 alt={selectedMachine.name}
@@ -308,38 +308,38 @@ export const QuoteCalculator: React.FC = () => {
 
             {/* Spec Matrix */}
             <div className="grid grid-cols-2 gap-2 text-xs mb-4">
-              <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-200">
-                <span className="text-[10px] text-slate-400 block uppercase font-medium">Operating Weight</span>
-                <strong className="text-slate-800 font-bold">{selectedMachine.operatingWeight}</strong>
+              <div className="p-2.5 rounded-lg bg-zinc-50 border border-zinc-200">
+                <span className="text-[10px] text-zinc-400 block uppercase font-medium">Operating Weight</span>
+                <strong className="text-zinc-800 font-bold">{selectedMachine.operatingWeight}</strong>
               </div>
-              <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-200">
-                <span className="text-[10px] text-slate-400 block uppercase font-medium">Engine Output</span>
-                <strong className="text-slate-800 font-bold">{selectedMachine.enginePower}</strong>
+              <div className="p-2.5 rounded-lg bg-zinc-50 border border-zinc-200">
+                <span className="text-[10px] text-zinc-400 block uppercase font-medium">Engine Output</span>
+                <strong className="text-zinc-800 font-bold">{selectedMachine.enginePower}</strong>
               </div>
-              <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-200">
-                <span className="text-[10px] text-slate-400 block uppercase font-medium">Bucket Capacity</span>
-                <strong className="text-slate-800 font-bold">{selectedMachine.bucketCapacity}</strong>
+              <div className="p-2.5 rounded-lg bg-zinc-50 border border-zinc-200">
+                <span className="text-[10px] text-zinc-400 block uppercase font-medium">Bucket Capacity</span>
+                <strong className="text-zinc-800 font-bold">{selectedMachine.bucketCapacity}</strong>
               </div>
-              <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-200">
-                <span className="text-[10px] text-slate-400 block uppercase font-medium">Max Dig Depth</span>
-                <strong className="text-slate-800 font-bold">{selectedMachine.maxDiggingDepth}</strong>
+              <div className="p-2.5 rounded-lg bg-zinc-50 border border-zinc-200">
+                <span className="text-[10px] text-zinc-400 block uppercase font-medium">Max Dig Depth</span>
+                <strong className="text-zinc-800 font-bold">{selectedMachine.maxDiggingDepth}</strong>
               </div>
             </div>
 
             {/* Logistics & Dispatch Estimates */}
-            <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 space-y-2 text-xs mb-5">
+            <div className="p-3.5 rounded-xl bg-zinc-50 border border-zinc-200 space-y-2 text-xs mb-5">
               <div className="flex items-center justify-between">
-                <span className="text-slate-500 font-medium">Mobilization Hub:</span>
-                <span className="font-bold text-slate-800">Tema Logistics Base</span>
+                <span className="text-zinc-500 font-medium">Mobilization Hub:</span>
+                <span className="font-bold text-zinc-800">Tema Logistics Base</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-slate-500 font-medium">Estimated Transit to Site:</span>
-                <span className="font-bold text-[#0B3B60]">
+                <span className="text-zinc-500 font-medium">Estimated Transit to Site:</span>
+                <span className="font-bold text-[#18181B]">
                   {location === 'accra-tema' ? 'Same-Day (4 - 8 Hours)' : '24 - 48 Hours'}
                 </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-slate-500 font-medium">Field Maintenance SLA:</span>
+                <span className="text-zinc-500 font-medium">Field Maintenance SLA:</span>
                 <span className="font-bold text-emerald-700">24/7 Rapid Response</span>
               </div>
             </div>
@@ -349,7 +349,7 @@ export const QuoteCalculator: React.FC = () => {
               href={generateWhatsAppMessage()}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-3 bg-[#0B3B60] hover:bg-[#07253D] text-white text-xs font-bold rounded-lg transition-colors flex items-center justify-center gap-2 shadow-sm"
+              className="w-full py-3 bg-[#18181B] hover:bg-[#09090B] text-white text-xs font-bold rounded-lg transition-colors flex items-center justify-center gap-2 shadow-sm"
             >
               <MessageSquare className="w-3.5 h-3.5 text-[#E85D04]" />
               <span>Send Spec Direct to WhatsApp Desk</span>

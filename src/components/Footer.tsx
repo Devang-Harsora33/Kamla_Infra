@@ -12,9 +12,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuoteModal }) => {
   };
 
   return (
-    <footer className="bg-[#07253D] text-slate-300 border-t border-slate-800">
+    <footer className="bg-[#09090B] text-zinc-300 border-t border-zinc-800">
       {/* Top CTA Banner in Footer */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-b border-slate-800">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-b border-zinc-800">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-1 text-center md:text-left">
             <span className="text-xs font-bold text-[#E85D04] uppercase tracking-wider block">
@@ -23,7 +23,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuoteModal }) => {
             <h3 className="font-heading text-2xl sm:text-3xl font-bold text-white">
               Ready to Equip Your Construction or Mining Project?
             </h3>
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-zinc-400">
               Immediate dispatch available from our central Tema yard.
             </p>
           </div>
@@ -53,10 +53,10 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuoteModal }) => {
           {/* Col 1: Brand & Bio */}
           <div className="lg:col-span-4 space-y-4">
             <Logo variant="white" showTagline={true} />
-            <p className="text-xs text-slate-400 leading-relaxed pt-2">
+            <p className="text-xs text-zinc-400 leading-relaxed pt-2">
               Kamla Infra Ghana Ltd. is a premier heavy machinery provider based in Ghana. We specialize in earthmoving equipment, dedicated to equipping local infrastructure, mining, and construction projects with reliable, high-performance excavators.
             </p>
-            <div className="flex items-center gap-2 text-xs text-slate-400 pt-2">
+            <div className="flex items-center gap-2 text-xs text-zinc-400 pt-2">
               <ShieldCheck className="w-4 h-4 text-[#E85D04]" />
               <span>Certified Heavy Machinery Dealer in Ghana</span>
             </div>
@@ -67,7 +67,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuoteModal }) => {
             <h4 className="text-xs font-bold text-white uppercase tracking-wider">
               Our Services
             </h4>
-            <ul className="space-y-2 text-xs text-slate-400">
+            <ul className="space-y-2 text-xs text-zinc-400">
               <li>
                 <a href="#services" className="hover:text-white transition-colors">
                   Excavator Sales & CIF Delivery
@@ -101,7 +101,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuoteModal }) => {
             <h4 className="text-xs font-bold text-white uppercase tracking-wider">
               Navigation
             </h4>
-            <ul className="space-y-2 text-xs text-slate-400">
+            <ul className="space-y-2 text-xs text-zinc-400">
               <li>
                 <a href="#home" className="hover:text-white transition-colors">
                   Home
@@ -135,7 +135,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuoteModal }) => {
             <h4 className="text-xs font-bold text-white uppercase tracking-wider">
               Ghana Headquarters
             </h4>
-            <div className="space-y-2.5 text-xs text-slate-400">
+            <div className="space-y-2.5 text-xs text-zinc-400">
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-[#E85D04] shrink-0 mt-0.5" />
                 <span>Plot 14, Tema Heavy Industrial Area, Greater Accra, Ghana</span>
@@ -155,7 +155,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuoteModal }) => {
       </div>
 
       {/* Bottom Legal Bar */}
-      <div className="border-t border-slate-800/80 bg-[#051c2f] py-6 text-xs text-slate-500">
+      <div className="border-t border-zinc-800/80 bg-[#051c2f] py-6 text-xs text-zinc-500">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div>
             © {new Date().getFullYear()} Kamla Infra Ghana Ltd. All rights reserved. Powering Progress in Ghana.
@@ -164,7 +164,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuoteModal }) => {
             <span>Registered in the Republic of Ghana</span>
             <button
               onClick={scrollToTop}
-              className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
+              className="p-2 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-300 transition-colors"
               aria-label="Scroll to top"
             >
               <ArrowUp className="w-4 h-4" />
