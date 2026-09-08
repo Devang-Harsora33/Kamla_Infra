@@ -2,147 +2,93 @@ import React from 'react';
 
 interface LogoProps {
   className?: string;
-  variant?: 'full' | 'icon-only' | 'stacked' | 'white';
-  showTagline?: boolean;
+  variant?: 'dark' | 'light';
+  showSubtext?: boolean;
 }
 
 export const Logo: React.FC<LogoProps> = ({
-  className = '',
-  variant = 'full',
-  showTagline = true,
+  className = 'h-10',
+  variant = 'dark',
+  showSubtext = true,
 }) => {
-  const isWhite = variant === 'white';
-  const navyColor = isWhite ? '#FFFFFF' : '#18181B';
-  const orangeColor = '#E85D04';
-  const slateColor = isWhite ? '#CBD5E1' : '#475569';
-
-  // Crisp Vector Monogram matching the exact Kamla Infra excavator-K geometry
-  const IconMark = () => (
-    <svg
-      viewBox="0 0 160 160"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="w-full h-full"
-    >
-      {/* Left Vertical Bar (Navy) */}
-      <rect x="18" y="32" width="22" height="96" rx="2" fill={navyColor} />
-      
-      {/* Lower Diagonal Leg of K (Navy) */}
-      <path
-        d="M52 74L108 128H82L40 86V74H52Z"
-        fill={navyColor}
-      />
-
-      {/* Inner Orange Chevron / K Accent */}
-      <path
-        d="M40 82L80 40H98L48 90H40V82Z"
-        fill={orangeColor}
-      />
-      <rect x="40" y="32" width="20" height="96" rx="1" fill={orangeColor} />
-
-      {/* Excavator Boom Arm (Navy) extending diagonally up from K center */}
-      <path
-        d="M46 88L96 14H116L66 88H46Z"
-        fill={navyColor}
-      />
-      {/* Excavator Dipper / Arm articulation going down */}
-      <path
-        d="M106 14L136 68L124 74L98 22L106 14Z"
-        fill={navyColor}
-      />
-
-      {/* Hydraulic Cylinder Accents */}
-      <rect
-        x="68"
-        y="42"
-        width="24"
-        height="5"
-        transform="rotate(-52 68 42)"
-        fill="#94A3B8"
-        opacity="0.8"
-      />
-
-      {/* Excavator Bucket (Orange) */}
-      <path
-        d="M130 64L144 80C146 86 142 96 132 98L112 98C108 98 104 94 104 90L108 82C110 80 114 80 116 82L124 88L134 86L126 72L130 64Z"
-        fill={orangeColor}
-      />
-      {/* Bucket Teeth details */}
-      <polygon points="106,94 102,100 108,100" fill={orangeColor} />
-      <polygon points="114,94 111,100 117,100" fill={orangeColor} />
-      <polygon points="122,94 119,100 125,100" fill={orangeColor} />
-    </svg>
-  );
-
-  if (variant === 'icon-only') {
-    return (
-      <div className={`relative inline-flex items-center justify-center ${className}`}>
-        <div className="w-10 h-10">
-          <IconMark />
-        </div>
-      </div>
-    );
-  }
-
-  if (variant === 'stacked') {
-    return (
-      <div className={`flex flex-col items-center text-center ${className}`}>
-        <div className="w-14 h-14 mb-2">
-          <IconMark />
-        </div>
-        <div className="flex flex-col">
-          <span
-            className="text-lg font-black tracking-tight leading-none"
-            style={{ color: navyColor, fontFamily: 'Cabinet Grotesk, Plus Jakarta Sans, sans-serif' }}
-          >
-            KAMLA INFRA
-          </span>
-          <span
-            className="text-sm font-bold tracking-wider leading-tight"
-            style={{ color: navyColor }}
-          >
-            GHANA LTD.
-          </span>
-          {showTagline && (
-            <span
-              className="text-[10px] font-semibold tracking-widest mt-1 uppercase"
-              style={{ color: slateColor }}
-            >
-              SALES <span style={{ color: orangeColor }}>•</span> RENTAL <span style={{ color: orangeColor }}>•</span> SPARES
-            </span>
-          )}
-        </div>
-      </div>
-    );
-  }
+  const isLight = variant === 'light';
+  const navyColor = isLight ? '#FFFFFF' : '#082B4C';
+  const orangeColor = '#F47721';
+  const subtextColor = isLight ? '#94A3B8' : '#68727D';
 
   return (
-    <div className={`flex items-center gap-3 select-none ${className}`}>
-      <div className="w-11 h-11 shrink-0">
-        <IconMark />
-      </div>
-      <div className="flex flex-col justify-center">
-        <div className="flex flex-col">
+    <div className={`flex items-center gap-3.5 select-none ${className}`}>
+      {/* Precision Vector Monogram 'K' with Excavator Boom & Bucket */}
+      <svg
+        viewBox="0 0 160 160"
+        className="h-10 w-10 sm:h-11 sm:w-11 shrink-0 overflow-visible"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        {/* Left vertical navy stem */}
+        <rect x="20" y="24" width="22" height="112" rx="2" fill={navyColor} />
+
+        {/* Top diagonal boom arm (Navy) */}
+        <path
+          d="M48 92L96 32H118L68 94L48 92Z"
+          fill={navyColor}
+        />
+
+        {/* Hydraulic boom extension & stick */}
+        <path
+          d="M102 32L124 64L114 70L96 36L102 32Z"
+          fill={navyColor}
+        />
+
+        {/* Stylized Excavator Bucket (Orange #F47721) */}
+        <path
+          d="M118 62C124 64 133 73 133 82C133 91 125 96 112 96C103 96 102 88 108 79L120 62H118Z"
+          fill={orangeColor}
+        />
+        {/* Bucket teeth accent */}
+        <path
+          d="M112 96L108 102M118 96L116 102M124 95L123 101"
+          stroke={orangeColor}
+          strokeWidth="2.5"
+          strokeLinecap="round"
+        />
+
+        {/* Lower diagonal inner chevron (Orange #F47721) */}
+        <path
+          d="M50 78L90 126H114L70 78H50Z"
+          fill={orangeColor}
+        />
+
+        {/* Lower outer navy chevron */}
+        <path
+          d="M68 110L88 136H114L90 106L68 110Z"
+          fill={navyColor}
+        />
+      </svg>
+
+      {/* Brand Typography */}
+      <div className="flex flex-col justify-center leading-tight">
+        <div className="flex items-baseline gap-1.5">
           <span
-            className="text-base font-extrabold tracking-tight leading-none"
-            style={{ color: navyColor, fontFamily: 'Cabinet Grotesk, Plus Jakarta Sans, sans-serif' }}
+            className="font-extrabold tracking-tight text-[17px] sm:text-[19px] uppercase"
+            style={{ color: navyColor, fontFamily: 'var(--font-sans)' }}
           >
             KAMLA INFRA
           </span>
           <span
-            className="text-xs font-bold tracking-wider leading-tight"
-            style={{ color: navyColor }}
+            className="font-extrabold tracking-tight text-[17px] sm:text-[19px] uppercase"
+            style={{ color: navyColor, fontFamily: 'var(--font-sans)' }}
           >
             GHANA LTD.
           </span>
         </div>
-        {showTagline && (
-          <span
-            className="text-[9px] font-semibold tracking-widest uppercase mt-0.5"
-            style={{ color: slateColor }}
+        {showSubtext && (
+          <div
+            className="text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase mt-0.5"
+            style={{ color: subtextColor }}
           >
-            SALES <span style={{ color: orangeColor }}>•</span> RENTAL <span style={{ color: orangeColor }}>•</span> SPARES
-          </span>
+            SALES • RENTAL • SPARES
+          </div>
         )}
       </div>
     </div>

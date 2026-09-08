@@ -1,208 +1,212 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { PageId } from '../types';
 import { Logo } from './Logo';
-import { Phone, Mail, MapPin, Clock, Menu, X, ChevronRight } from 'lucide-react';
+import { Search, Menu, X, PhoneCall, ChevronRight } from 'lucide-react';
 
 interface NavbarProps {
-  onOpenQuoteModal: (service?: string) => void;
-  activeSection: string;
+  currentPage: PageId;
+  onNavigate: (page: PageId) => void;
+  onOpenQuote: (preSelectedModel?: string, defaultService?: 'rental' | 'sales' | 'spares') => void;
+  onOpenSearch: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenQuoteModal, activeSection }) => {
-  const [isScrolled, setIsScrolled] = useState(false);
+export const Navbar: React.FC<NavbarProps> = ({
+  currentPage,
+  onNavigate,
+  onOpenQuote,
+  onOpenSearch,
+}) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [ghanaTime, setGhanaTime] = useState('');
 
-  // Update live Ghana Time (GMT / UTC+0)
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      const options: Intl.DateTimeFormatOptions = {
-        timeZone: 'Africa/Accra',
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: true,
-      };
-      setGhanaTime(new Intl.DateTimeFormat('en-GB', options).format(now));
-    };
-    updateTime();
-    const interval = setInterval(updateTime, 30000);
-    return () => clearInterval(interval);
-  }, []);
-
-  // Handle scroll shadow and compact style
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const navLinks = [
-    { label: 'Home', href: '#home' },
-    { label: 'About Us', href: '#about' },
-    { label: 'Services', href: '#services' },
-    { label: 'Fleet', href: '#fleet' },
-    { label: 'Contact', href: '#contact' },
+  const navItems: { id: PageId; label: string }[] = [
+    { id: 'home', label: 'Home' },
+    { id: 'equipment', label: 'Equipment' },
+    { id: 'rental', label: 'Rental' },
+    { id: 'sales-spares', label: 'Sales & Spares' },
+    { id: 'about-contact', label: 'About / Contact' },
   ];
 
+  const handleNavClick = (page: PageId) => {
+    onNavigate(page);
+    setMobileMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <header className="sticky top-0 z-50 w-full transition-all duration-300">
-      {/* Top Utility Bar */}
-      <div className="bg-[#09090B] text-zinc-300 text-xs py-2 border-b border-zinc-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-2">
-          {/* Left: Location & Time */}
-          <div className="flex items-center gap-5 text-zinc-300 font-medium">
-            <div className="flex items-center gap-1.5">
-              <MapPin className="w-3.5 h-3.5 text-[#E85D04]" />
-              <span>Tema Heavy Industrial Area, Greater Accra, Ghana</span>
-            </div>
-            <div className="hidden sm:flex items-center gap-1.5 border-l border-zinc-700 pl-4">
-              <Clock className="w-3.5 h-3.5 text-[#E85D04]" />
-              <span>Accra: <strong className="text-white">{ghanaTime || 'GMT'}</strong> (Mon - Sat: 7:30 AM - 6:00 PM)</span>
-            </div>
+    <>
+      {/* Top Industrial Strip */}
+      <div className="bg-[#061E35] text-slate-300 text-xs py-1.5 px-4 sm:px-8 border-b border-[#082B4C] hidden md:block">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-6">
+            <span className="flex items-center gap-1.5 text-slate-300 font-medium">
+              <span className="inline-block w-2 h-2 rounded-full bg-[#F47721] animate-pulse"></span>
+              Heavy Machinery Fleet Ready for Deployment Across Ghana
+            </span>
+            <span className="text-slate-500">|</span>
+            <span className="text-slate-400">Accra • Takoradi • Kumasi • Tarkwa</span>
           </div>
 
-          {/* Right: Direct Desk & WhatsApp */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 text-slate-300">
+            <span className="text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+              <span>Built for a Stronger Ghana</span>
+              {/* Ghana Flag mini badge */}
+              <span className="inline-flex items-center overflow-hidden rounded-[2px] border border-white/20 w-4 h-2.5">
+                <span className="w-1/3 h-full bg-[#CE1126]"></span>
+                <span className="w-1/3 h-full bg-[#FCD116] flex items-center justify-center text-[5px] text-black">★</span>
+                <span className="w-1/3 h-full bg-[#006B3F]"></span>
+              </span>
+            </span>
+            <span className="text-slate-600">|</span>
             <a
-              href="tel:+233302984500"
-              className="flex items-center gap-1.5 hover:text-white transition-colors"
+              href="tel:+233240000000"
+              className="flex items-center gap-1.5 font-semibold text-white hover:text-[#F47721] transition-colors"
             >
-              <Phone className="w-3.5 h-3.5 text-[#E85D04]" />
-              <span>+233 (0) 30 298 4500</span>
-            </a>
-            <a
-              href="mailto:quotes@kamlainfra.com"
-              className="hidden lg:flex items-center gap-1.5 hover:text-white transition-colors border-l border-zinc-700 pl-4"
-            >
-              <Mail className="w-3.5 h-3.5 text-[#E85D04]" />
-              <span>quotes@kamlainfra.com</span>
-            </a>
-            <a
-              href="https://wa.me/233244567890?text=Hello%20Kamla%20Infra%20Ghana,%20I%20would%20like%20to%20inquire%20about%20excavator%20availability."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 bg-[#E85D04] hover:bg-[#ff6d00] text-white px-2.5 py-0.5 rounded text-[11px] font-semibold transition-colors"
-            >
-              <span>WhatsApp Sales</span>
+              <PhoneCall className="w-3.5 h-3.5 text-[#F47721]" />
+              <span>+233 (0) 50 123 4567</span>
             </a>
           </div>
         </div>
       </div>
 
-      {/* Main Navigation Bar */}
-      <nav
-        className={`w-full transition-all duration-300 ${
-          isScrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-zinc-200 py-3'
-            : 'bg-white border-b border-zinc-100 py-4'
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      {/* Main Sticky Header */}
+      <header className="sticky top-0 z-40 bg-white border-b border-slate-200/80 shadow-xs h-[74px] sm:h-[80px] flex items-center transition-all">
+        <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Brand Logo */}
-          <a href="#home" className="focus:outline-none focus:ring-2 focus:ring-[#18181B] rounded-lg">
-            <Logo variant="full" />
-          </a>
+          <button
+            onClick={() => handleNavClick('home')}
+            className="flex items-center text-left focus:outline-hidden group cursor-pointer"
+            aria-label="Kamla Infra Ghana Home"
+          >
+            <Logo variant="dark" />
+          </button>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center gap-1 xl:gap-2">
-            {navLinks.map((link) => {
-              const isActive = activeSection === link.href.replace('#', '');
+          <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+            {navItems.map((item) => {
+              const isActive = currentPage === item.id;
               return (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className={`px-3 py-2 text-sm font-semibold transition-colors rounded-md ${
+                <button
+                  key={item.id}
+                  onClick={() => handleNavClick(item.id)}
+                  className={`px-3.5 py-2 text-[14px] font-semibold tracking-tight transition-all rounded-md relative cursor-pointer ${
                     isActive
-                      ? 'text-[#18181B] bg-zinc-100'
-                      : 'text-zinc-700 hover:text-[#18181B] hover:bg-zinc-50'
+                      ? 'text-[#F47721] font-bold'
+                      : 'text-[#102A43] hover:text-[#082B4C] hover:bg-slate-100/60'
                   }`}
                 >
-                  {link.label}
-                </a>
+                  {item.label}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-3.5 right-3.5 h-[2.5px] bg-[#F47721] rounded-full" />
+                  )}
+                </button>
               );
             })}
-          </div>
+          </nav>
 
-          {/* Action CTAs */}
+          {/* Right Action Buttons */}
           <div className="hidden sm:flex items-center gap-3">
+            {/* Search Trigger */}
             <button
-              onClick={() => onOpenQuoteModal('rental')}
-              className="px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#18181B] border border-[#18181B] hover:bg-[#18181B]/5 rounded-lg transition-all"
+              onClick={onOpenSearch}
+              className="p-2.5 text-slate-600 hover:text-[#082B4C] hover:bg-slate-100 rounded-lg transition-colors cursor-pointer border border-transparent hover:border-slate-200"
+              title="Search equipment catalog"
+              aria-label="Search"
             >
-              Fleet Availability
+              <Search className="w-5 h-5" />
             </button>
+
+            {/* Primary Orange CTA: "Get a Quote" */}
             <button
-              onClick={() => onOpenQuoteModal('sales')}
-              className="px-4 py-2 text-xs font-bold uppercase tracking-wider text-white bg-[#18181B] hover:bg-[#09090B] shadow-sm hover:shadow rounded-lg transition-all flex items-center gap-1.5"
+              onClick={() => onOpenQuote()}
+              className="bg-[#F47721] hover:bg-[#D96213] text-white px-5 py-2.5 rounded-lg text-sm font-bold tracking-wide transition-all shadow-xs hover:shadow-md flex items-center gap-2 cursor-pointer active:scale-[0.98]"
             >
-              <span>Request Quote</span>
-              <ChevronRight className="w-3.5 h-3.5 text-[#E85D04]" />
+              <span>Get a Quote</span>
+              <ChevronRight className="w-4 h-4" />
             </button>
           </div>
 
-          {/* Mobile Menu Toggle Button */}
-          <div className="lg:hidden flex items-center gap-2">
+          {/* Mobile Actions & Hamburger */}
+          <div className="flex items-center gap-2 lg:hidden">
             <button
-              onClick={() => onOpenQuoteModal('sales')}
-              className="px-3 py-1.5 text-xs font-bold text-white bg-[#E85D04] rounded-md sm:hidden"
+              onClick={onOpenSearch}
+              className="p-2 text-slate-700 hover:text-[#082B4C] rounded-lg"
+              aria-label="Search"
             >
-              Get Quote
+              <Search className="w-5 h-5" />
             </button>
+
+            <button
+              onClick={() => onOpenQuote()}
+              className="bg-[#F47721] text-white px-3 py-1.5 text-xs font-bold rounded-md flex items-center gap-1 sm:hidden"
+            >
+              Quote
+            </button>
+
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle Navigation Menu"
-              className="p-2 text-zinc-700 hover:text-[#18181B] hover:bg-zinc-100 rounded-md focus:outline-none"
+              className="p-2 text-[#082B4C] hover:bg-slate-100 rounded-lg focus:outline-hidden cursor-pointer"
+              aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
+      </header>
 
-        {/* Mobile Dropdown Menu */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden bg-white border-b border-zinc-200 px-4 pt-2 pb-6 space-y-2 animate-in fade-in slide-in-from-top-4 duration-200">
-            <div className="grid grid-cols-1 gap-1">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="px-3 py-2.5 text-base font-semibold text-zinc-800 hover:bg-zinc-100 hover:text-[#18181B] rounded-md transition-colors flex items-center justify-between"
-                >
-                  <span>{link.label}</span>
-                  <ChevronRight className="w-4 h-4 text-zinc-400" />
-                </a>
-              ))}
+      {/* Mobile Drawer */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden fixed inset-x-0 top-[74px] sm:top-[80px] bottom-0 z-50 bg-black/50 backdrop-blur-xs flex justify-end">
+          <div className="w-full max-w-sm bg-white h-full shadow-2xl flex flex-col justify-between border-l border-slate-200 p-6 animate-in slide-in-from-right duration-200">
+            <div>
+              <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-4">
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Navigation Menu</span>
+                <span className="text-xs font-semibold text-[#F47721] flex items-center gap-1">
+                  Ghana Fleet
+                </span>
+              </div>
+
+              <div className="space-y-1.5">
+                {navItems.map((item) => {
+                  const isActive = currentPage === item.id;
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => handleNavClick(item.id)}
+                      className={`w-full text-left px-4 py-3 rounded-lg text-[15px] font-semibold flex items-center justify-between transition-colors ${
+                        isActive
+                          ? 'bg-[#082B4C] text-white'
+                          : 'text-[#102A43] hover:bg-slate-100'
+                      }`}
+                    >
+                      <span>{item.label}</span>
+                      <ChevronRight className={`w-4 h-4 ${isActive ? 'text-[#F47721]' : 'text-slate-400'}`} />
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
-            <div className="pt-4 border-t border-zinc-200 flex flex-col gap-2">
+            <div className="space-y-3 pt-6 border-t border-slate-100">
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
-                  onOpenQuoteModal('sales');
+                  onOpenQuote();
                 }}
-                className="w-full py-3 text-center text-sm font-bold text-white bg-[#18181B] rounded-lg shadow"
+                className="w-full bg-[#F47721] hover:bg-[#D96213] text-white py-3 rounded-lg font-bold text-center flex items-center justify-center gap-2 shadow-sm"
               >
-                Request Official Equipment Quote
+                <span>Request a Quote / Rental</span>
+                <ChevronRight className="w-4 h-4" />
               </button>
-              <a
-                href="https://wa.me/233244567890?text=Hello%20Kamla%20Infra,%20I%20am%20looking%20for%20excavators%20in%20Ghana."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-2.5 text-center text-sm font-bold text-zinc-800 bg-[#E85D04]/10 text-[#E85D04] rounded-lg border border-[#E85D04]/30"
-              >
-                Chat on WhatsApp (+233 24 456 7890)
-              </a>
+
+              <div className="text-xs text-slate-500 space-y-1 text-center pt-2">
+                <p className="font-semibold text-slate-700">Kamla Infra Ghana Ltd.</p>
+                <p>Heavy Equipment Sales • Rental • Spares</p>
+                <p className="text-slate-400">Accra, Ghana • +233 (0) 50 123 4567</p>
+              </div>
             </div>
           </div>
-        )}
-      </nav>
-    </header>
+        </div>
+      )}
+    </>
   );
 };

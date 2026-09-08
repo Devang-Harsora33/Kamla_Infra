@@ -1,174 +1,166 @@
 import React from 'react';
+import { PageId } from '../types';
 import { Logo } from './Logo';
-import { Phone, Mail, MapPin, ArrowUp, ShieldCheck, ArrowRight } from 'lucide-react';
+import { ArrowRight, MapPin, Phone, Mail, Clock, ShieldCheck } from 'lucide-react';
 
 interface FooterProps {
-  onOpenQuoteModal: (service?: string) => void;
+  onNavigate: (page: PageId) => void;
+  onOpenQuote: (service?: 'rental' | 'sales' | 'spares') => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onOpenQuoteModal }) => {
-  const scrollToTop = () => {
+export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote }) => {
+  const handleNav = (page: PageId) => {
+    onNavigate(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <footer className="bg-[#09090B] text-zinc-300 border-t border-zinc-800">
-      {/* Top CTA Banner in Footer */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-b border-zinc-800">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="space-y-1 text-center md:text-left">
-            <span className="text-xs font-bold text-[#E85D04] uppercase tracking-wider block">
-              Ghana Heavy Machinery Solutions
-            </span>
-            <h3 className="font-heading text-2xl sm:text-3xl font-bold text-white">
-              Ready to Equip Your Construction or Mining Project?
-            </h3>
-            <p className="text-sm text-zinc-400">
-              Immediate dispatch available from our central Tema yard.
-            </p>
-          </div>
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => onOpenQuoteModal('sales')}
-              className="px-6 py-3 bg-[#E85D04] hover:bg-[#ff6d00] text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-colors shadow-md whitespace-nowrap"
-            >
-              Request Fleet Quote
-            </button>
-            <a
-              href="https://wa.me/233244567890"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-5 py-3 bg-white/10 hover:bg-white/20 text-white text-xs font-bold uppercase tracking-wider rounded-lg border border-white/20 transition-colors whitespace-nowrap"
-            >
-              WhatsApp Us
-            </a>
-          </div>
-        </div>
-      </div>
+    <footer className="bg-[#061E35] text-slate-300 border-t border-[#082B4C] relative overflow-hidden">
+      {/* Top subtle highlight line */}
+      <div className="h-1 bg-gradient-to-r from-[#082B4C] via-[#F47721] to-[#082B4C]" />
 
-      {/* Main Footer Links & Info */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
-          
-          {/* Col 1: Brand & Bio */}
-          <div className="lg:col-span-4 space-y-4">
-            <Logo variant="white" showTagline={true} />
-            <p className="text-xs text-zinc-400 leading-relaxed pt-2">
-              Kamla Infra Ghana Ltd. is a premier heavy machinery provider based in Ghana. We specialize in earthmoving equipment, dedicated to equipping local infrastructure, mining, and construction projects with reliable, high-performance excavators.
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-12 border-b border-slate-800/80">
+          {/* Col 1 & 2: Brand Info */}
+          <div className="lg:col-span-2 space-y-5">
+            <Logo variant="light" />
+            
+            <p className="text-slate-400 text-[14px] leading-relaxed max-w-sm">
+              Heavy Equipment Solutions for Construction, Mining & Infrastructure across Ghana. Providing high-availability machinery, flexible rental options, and genuine spare parts.
             </p>
-            <div className="flex items-center gap-2 text-xs text-zinc-400 pt-2">
-              <ShieldCheck className="w-4 h-4 text-[#E85D04]" />
-              <span>Certified Heavy Machinery Dealer in Ghana</span>
+
+            <div className="pt-2 flex flex-col gap-2.5 text-xs text-slate-300">
+              <div className="flex items-start gap-2.5">
+                <MapPin className="w-4 h-4 text-[#F47721] shrink-0 mt-0.5" />
+                <span>Heavy Industrial Area, Spintex Road / Tema Corridor, Greater Accra, Ghana</span>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <Phone className="w-4 h-4 text-[#F47721] shrink-0" />
+                <span>+233 (0) 50 123 4567 / +233 (0) 24 987 6543</span>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <Mail className="w-4 h-4 text-[#F47721] shrink-0" />
+                <span>sales@kamlainfra.com • support@kamlainfra.com</span>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 pt-1">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#082B4C] text-[11px] text-slate-200 border border-slate-700/60 font-medium">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#F47721]" />
+                Registered in Republic of Ghana
+              </span>
             </div>
           </div>
 
-          {/* Col 2: Services */}
-          <div className="lg:col-span-3 space-y-3">
-            <h4 className="text-xs font-bold text-white uppercase tracking-wider">
-              Our Services
-            </h4>
-            <ul className="space-y-2 text-xs text-zinc-400">
-              <li>
-                <a href="#services" className="hover:text-white transition-colors">
-                  Excavator Sales & CIF Delivery
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="hover:text-white transition-colors">
-                  Machinery Trading & Upgrades
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="hover:text-white transition-colors">
-                  Equipment Rental (Wet & Dry Leases)
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="hover:text-white transition-colors">
-                  OEM Hydraulic Spares & Filters
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="hover:text-white transition-colors">
-                  24/7 Mobile Field Maintenance
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Col 3: Quick Navigation */}
-          <div className="lg:col-span-2 space-y-3">
-            <h4 className="text-xs font-bold text-white uppercase tracking-wider">
+          {/* Col 3: Navigation */}
+          <div>
+            <h4 className="text-white text-xs font-bold uppercase tracking-wider mb-4 border-l-2 border-[#F47721] pl-2">
               Navigation
             </h4>
-            <ul className="space-y-2 text-xs text-zinc-400">
+            <ul className="space-y-2.5 text-sm">
+              {[
+                { id: 'home' as PageId, label: 'Home' },
+                { id: 'equipment' as PageId, label: 'Equipment Catalogue' },
+                { id: 'rental' as PageId, label: 'Rental Solutions' },
+                { id: 'sales-spares' as PageId, label: 'Sales & Spares' },
+                { id: 'about-contact' as PageId, label: 'About / Contact' },
+              ].map((link) => (
+                <li key={link.id}>
+                  <button
+                    onClick={() => handleNav(link.id)}
+                    className="text-slate-400 hover:text-white hover:translate-x-1 transition-all flex items-center gap-1.5 text-left cursor-pointer"
+                  >
+                    <span>{link.label}</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Col 4: Services */}
+          <div>
+            <h4 className="text-white text-xs font-bold uppercase tracking-wider mb-4 border-l-2 border-[#F47721] pl-2">
+              Services
+            </h4>
+            <ul className="space-y-2.5 text-sm">
               <li>
-                <a href="#home" className="hover:text-white transition-colors">
-                  Home
-                </a>
+                <button
+                  onClick={() => handleNav('sales-spares')}
+                  className="text-slate-400 hover:text-white transition-colors text-left"
+                >
+                  Equipment Sales
+                </button>
               </li>
               <li>
-                <a href="#about" className="hover:text-white transition-colors">
-                  About Us
-                </a>
+                <button
+                  onClick={() => handleNav('rental')}
+                  className="text-slate-400 hover:text-white transition-colors text-left"
+                >
+                  Equipment Rental
+                </button>
               </li>
               <li>
-                <a href="#services" className="hover:text-white transition-colors">
-                  Services
-                </a>
+                <button
+                  onClick={() => handleNav('sales-spares')}
+                  className="text-slate-400 hover:text-white transition-colors text-left"
+                >
+                  Spare Parts Support
+                </button>
               </li>
               <li>
-                <a href="#fleet" className="hover:text-white transition-colors">
-                  Equipment Fleet
-                </a>
+                <button
+                  onClick={() => handleNav('equipment')}
+                  className="text-slate-400 hover:text-white transition-colors text-left"
+                >
+                  Fleet Maintenance
+                </button>
               </li>
               <li>
-                <a href="#contact" className="hover:text-white transition-colors">
-                  Contact Us
-                </a>
+                <button
+                  onClick={() => handleNav('rental')}
+                  className="text-slate-400 hover:text-white transition-colors text-left"
+                >
+                  On-Site Operator Support
+                </button>
               </li>
             </ul>
           </div>
 
-          {/* Col 4: Ghana Contact Office */}
-          <div className="lg:col-span-3 space-y-3">
-            <h4 className="text-xs font-bold text-white uppercase tracking-wider">
-              Ghana Headquarters
-            </h4>
-            <div className="space-y-2.5 text-xs text-zinc-400">
-              <div className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-[#E85D04] shrink-0 mt-0.5" />
-                <span>Plot 14, Tema Heavy Industrial Area, Greater Accra, Ghana</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-[#E85D04] shrink-0" />
-                <span>+233 (0) 30 298 4500 / +233 (0) 24 456 7890</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-[#E85D04] shrink-0" />
-                <span>quotes@kamlainfra.com</span>
-              </div>
+          {/* Col 5: Direct Quote Callout */}
+          <div className="bg-[#082B4C]/70 p-5 rounded-xl border border-slate-700/60 flex flex-col justify-between">
+            <div>
+              <span className="text-[11px] font-bold tracking-wider text-[#F47721] uppercase block mb-1">
+                Direct Commercial Desk
+              </span>
+              <h5 className="text-white font-bold text-[15px] leading-snug">
+                Need Machinery on Your Site?
+              </h5>
+              <p className="text-slate-400 text-xs mt-2 leading-relaxed">
+                Connect with our commercial team in Accra for fast mobilization and equipment dispatch.
+              </p>
+            </div>
+
+            <div className="pt-5">
+              <button
+                onClick={() => onOpenQuote()}
+                className="w-full bg-[#F47721] hover:bg-[#D96213] text-white py-2.5 px-4 rounded-lg text-xs font-bold tracking-wide transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <span>Get a Quote</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
             </div>
           </div>
-
         </div>
-      </div>
 
-      {/* Bottom Legal Bar */}
-      <div className="border-t border-zinc-800/80 bg-[#051c2f] py-6 text-xs text-zinc-500">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div>
-            © {new Date().getFullYear()} Kamla Infra Ghana Ltd. All rights reserved. Powering Progress in Ghana.
-          </div>
-          <div className="flex items-center gap-4">
-            <span>Registered in the Republic of Ghana</span>
-            <button
-              onClick={scrollToTop}
-              className="p-2 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-300 transition-colors"
-              aria-label="Scroll to top"
-            >
-              <ArrowUp className="w-4 h-4" />
-            </button>
+        {/* Bottom Strip */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+          <p>© 2026 Kamla Infra Ghana Ltd. All Rights Reserved.</p>
+          <div className="flex items-center gap-6">
+            <span>Ghana Heavy Equipment Standards</span>
+            <span className="text-slate-700">•</span>
+            <span>Accra • Takoradi • Kumasi</span>
+            <span className="text-slate-700">•</span>
+            <span className="text-slate-400 font-medium">Powering Infrastructure Across Ghana</span>
           </div>
         </div>
       </div>

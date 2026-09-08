@@ -1,237 +1,315 @@
-import React, { useState } from 'react';
-import { X, Send, CheckCircle2, MessageSquare } from 'lucide-react';
-import { GHANA_LOCATIONS, EQUIPMENT_INVENTORY } from '../data/equipmentData';
+import React, { useState, useEffect } from 'react';
+import { EQUIPMENT_DATA } from '../data/equipmentData';
+import { X, CheckCircle, Send, Shield, Phone, MapPin } from 'lucide-react';
 
 interface QuoteModalProps {
   isOpen: boolean;
   onClose: () => void;
-  initialService?: string;
-  initialModel?: string;
+  preSelectedModel?: string;
+  defaultService?: 'rental' | 'sales' | 'spares';
 }
 
 export const QuoteModal: React.FC<QuoteModalProps> = ({
   isOpen,
   onClose,
-  initialService = 'sales',
-  initialModel = '',
+  preSelectedModel,
+  defaultService = 'rental',
 }) => {
-  const [service, setService] = useState(initialService);
-  const [model, setModel] = useState(initialModel || EQUIPMENT_INVENTORY[0].name);
-  const [location, setLocation] = useState('accra-tema');
-  const [name, setName] = useState('');
+  const [fullName, setFullName] = useState('');
+  const [company, setCompany] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
+  const [serviceType, setServiceType] = useState<'rental' | 'sales' | 'spares'>(defaultService);
+  const [selectedModel, setSelectedModel] = useState(preSelectedModel || '');
+  const [duration, setDuration] = useState('1 to 3 Months');
+  const [projectLocation, setProjectLocation] = useState('');
   const [notes, setNotes] = useState('');
-  const [submitted, setSubmitted] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [referenceId, setReferenceId] = useState('');
+
+  useEffect(() => {
+    if (preSelectedModel) {
+      setSelectedModel(preSelectedModel);
+    }
+    if (defaultService) {
+      setServiceType(defaultService);
+    }
+  }, [preSelectedModel, defaultService]);
 
   if (!isOpen) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    const randomRef = `KIG-${Math.floor(100000 + Math.random() * 900000)}`;
+    setReferenceId(randomRef);
+    setIsSubmitted(true);
   };
 
-  const selectedLoc = GHANA_LOCATIONS.find((l) => l.value === location)?.label || 'Ghana';
-
-  const generateWhatsAppLink = () => {
-    const text = `Hello Kamla Infra Ghana, I would like to request an official quote:
-- Requirement: ${service.toUpperCase()}
-- Model/Class: ${model}
-- Project Location: ${selectedLoc}
-- Name: ${name}
-- Phone: ${phone}
-- Notes: ${notes || 'Standard requisition'}`;
-    return `https://wa.me/233244567890?text=${encodeURIComponent(text)}`;
+  const resetForm = () => {
+    setIsSubmitted(false);
+    onClose();
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-zinc-950/70 backdrop-blur-sm animate-in fade-in duration-200">
-      <div
-        className="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-zinc-200"
-        role="dialog"
-        aria-modal="true"
-      >
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-150">
+      <div className="relative bg-white w-full max-w-xl rounded-xl shadow-2xl border border-slate-200 overflow-hidden">
         {/* Header */}
-        <div className="px-6 py-4 border-b border-zinc-100 flex items-center justify-between bg-zinc-50 rounded-t-2xl">
+        <div className="bg-[#082B4C] text-white px-6 py-5 flex items-center justify-between">
           <div>
-            <span className="text-[10px] font-bold text-[#E85D04] uppercase tracking-wider block">
-              Kamla Infra Ghana Ltd.
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#F47721]">
+              Commercial Equipment Desk
             </span>
-            <h3 className="font-heading text-lg font-bold text-[#18181B]">
-              Equipment Quote Request
+            <h3 className="text-lg font-bold tracking-tight text-white mt-0.5">
+              {serviceType === 'rental'
+                ? 'Request Equipment Rental Quote'
+                : serviceType === 'sales'
+                ? 'Equipment Sales Enquiry'
+                : 'Genuine Spare Parts Enquiry'}
             </h3>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-zinc-400 hover:text-zinc-700 rounded-lg hover:bg-zinc-200/60"
+            className="text-slate-300 hover:text-white p-1 rounded-md hover:bg-white/10 transition-colors cursor-pointer"
+            aria-label="Close"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Content */}
-        <div className="p-6">
-          {submitted ? (
-            <div className="text-center py-8 space-y-4">
-              <div className="w-14 h-14 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mx-auto">
-                <CheckCircle2 className="w-7 h-7" />
-              </div>
-              <h4 className="font-heading text-xl font-bold text-[#18181B]">
-                Quote Request Dispatched
-              </h4>
-              <p className="text-xs text-zinc-600">
-                Thank you, <strong>{name}</strong>. Our machinery desk has received your request for <strong>{model}</strong>.
+        {isSubmitted ? (
+          /* Submission Success State */
+          <div className="p-8 text-center space-y-4">
+            <div className="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto">
+              <CheckCircle className="w-8 h-8" />
+            </div>
+
+            <div className="space-y-1">
+              <h4 className="text-xl font-bold text-[#102A43]">Enquiry Received Successfully</h4>
+              <p className="text-sm text-slate-600">
+                Our commercial equipment coordinator in Ghana has been notified and will contact you within 2 business hours.
               </p>
-              <div className="pt-2 flex flex-col gap-2">
-                <a
-                  href={generateWhatsAppLink()}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-3 bg-[#E85D04] hover:bg-[#ff6d00] text-white text-xs font-bold uppercase rounded-lg transition-colors flex items-center justify-center gap-2"
-                >
-                  <MessageSquare className="w-4 h-4" />
-                  <span>Send Directly to WhatsApp Desk</span>
-                </a>
+            </div>
+
+            <div className="bg-[#F4F6F8] p-4 rounded-lg border border-slate-200 text-left text-xs space-y-1.5 max-w-md mx-auto">
+              <div className="flex justify-between">
+                <span className="text-slate-500">Quote Reference:</span>
+                <span className="font-bold text-[#082B4C]">{referenceId}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-slate-500">Service:</span>
+                <span className="font-semibold capitalize">{serviceType}</span>
+              </div>
+              {selectedModel && (
+                <div className="flex justify-between">
+                  <span className="text-slate-500">Equipment:</span>
+                  <span className="font-semibold text-slate-700">{selectedModel}</span>
+                </div>
+              )}
+              {projectLocation && (
+                <div className="flex justify-between">
+                  <span className="text-slate-500">Location:</span>
+                  <span className="font-semibold text-slate-700">{projectLocation}</span>
+                </div>
+              )}
+            </div>
+
+            <div className="pt-2 flex flex-col sm:flex-row gap-3 justify-center">
+              <button
+                onClick={resetForm}
+                className="bg-[#082B4C] hover:bg-[#061E35] text-white px-6 py-2.5 rounded-lg text-sm font-semibold transition-colors cursor-pointer"
+              >
+                Done
+              </button>
+              <a
+                href="tel:+233501234567"
+                className="inline-flex items-center justify-center gap-2 border border-slate-300 hover:bg-slate-50 text-slate-800 px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors"
+              >
+                <Phone className="w-4 h-4 text-[#F47721]" />
+                <span>Call Urgent Desk</span>
+              </a>
+            </div>
+          </div>
+        ) : (
+          /* Form Body */
+          <form onSubmit={handleSubmit} className="p-6 space-y-4">
+            {/* Service Toggle */}
+            <div className="grid grid-cols-3 gap-2 p-1 bg-slate-100 rounded-lg">
+              {(['rental', 'sales', 'spares'] as const).map((type) => (
                 <button
+                  key={type}
                   type="button"
-                  onClick={() => {
-                    setSubmitted(false);
-                    onClose();
-                  }}
-                  className="w-full py-2.5 bg-zinc-100 text-zinc-700 text-xs font-bold rounded-lg hover:bg-zinc-200"
+                  onClick={() => setServiceType(type)}
+                  className={`py-2 text-xs font-bold uppercase tracking-wider rounded-md transition-all cursor-pointer ${
+                    serviceType === type
+                      ? 'bg-[#082B4C] text-white shadow-xs'
+                      : 'text-slate-600 hover:text-slate-900'
+                  }`}
                 >
-                  Close Window
+                  {type === 'sales' ? 'Equipment Sale' : type === 'rental' ? 'Rental Fleet' : 'Spare Parts'}
                 </button>
+              ))}
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">
+                  Full Name <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  placeholder="e.g. Kwame Mensah"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-[#F47721]/30 focus:border-[#F47721]"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">
+                  Company / Organization <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  placeholder="e.g. Gold Coast Quarry Ltd."
+                  value={company}
+                  onChange={(e) => setCompany(e.target.value)}
+                  className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-[#F47721]/30 focus:border-[#F47721]"
+                />
               </div>
             </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-4 text-xs">
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
               <div>
-                <label className="block text-zinc-600 font-bold uppercase text-[10px] mb-1">
-                  Service Category
+                <label className="block text-xs font-bold text-slate-700 mb-1">
+                  Phone Number (Ghana) <span className="text-red-500">*</span>
                 </label>
-                <div className="grid grid-cols-3 gap-2">
-                  {[
-                    { id: 'sales', label: 'Excavator Sales' },
-                    { id: 'rental', label: 'Equipment Rental' },
-                    { id: 'trading', label: 'Machinery Trade-In' },
-                  ].map((s) => (
-                    <button
-                      key={s.id}
-                      type="button"
-                      onClick={() => setService(s.id)}
-                      className={`py-2 text-center rounded-lg font-bold border transition-all ${
-                        service === s.id
-                          ? 'bg-[#18181B] text-white border-[#18181B]'
-                          : 'bg-zinc-50 text-zinc-700 border-zinc-200 hover:bg-zinc-100'
-                      }`}
-                    >
-                      {s.label}
-                    </button>
-                  ))}
-                </div>
+                <input
+                  type="tel"
+                  required
+                  placeholder="+233 XX XXX XXXX"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-[#F47721]/30 focus:border-[#F47721]"
+                />
               </div>
 
               <div>
-                <label className="block text-zinc-600 font-bold uppercase text-[10px] mb-1">
-                  Machinery Model / Class
-                </label>
-                <select
-                  value={model}
-                  onChange={(e) => setModel(e.target.value)}
-                  className="w-full bg-zinc-50 border border-zinc-300 rounded-lg px-3 py-2 text-xs font-semibold focus:outline-none focus:border-[#18181B]"
-                >
-                  {EQUIPMENT_INVENTORY.map((item) => (
-                    <option key={item.id} value={item.name}>
-                      {item.name} ({item.categoryLabel})
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-zinc-600 font-bold uppercase text-[10px] mb-1">
-                  Ghana Site Location
-                </label>
-                <select
-                  value={location}
-                  onChange={(e) => setLocation(e.target.value)}
-                  className="w-full bg-zinc-50 border border-zinc-300 rounded-lg px-3 py-2 text-xs font-semibold focus:outline-none focus:border-[#18181B]"
-                >
-                  {GHANA_LOCATIONS.map((loc) => (
-                    <option key={loc.value} value={loc.value}>
-                      {loc.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-zinc-600 font-bold uppercase text-[10px] mb-1">
-                    Your Name *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="Full Name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="w-full bg-zinc-50 border border-zinc-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-[#18181B]"
-                  />
-                </div>
-                <div>
-                  <label className="block text-zinc-600 font-bold uppercase text-[10px] mb-1">
-                    Phone / WhatsApp *
-                  </label>
-                  <input
-                    type="tel"
-                    required
-                    placeholder="+233..."
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    className="w-full bg-zinc-50 border border-zinc-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-[#18181B]"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-zinc-600 font-bold uppercase text-[10px] mb-1">
-                  Email Address *
+                <label className="block text-xs font-bold text-slate-700 mb-1">
+                  Email Address <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="email"
                   required
-                  placeholder="contact@company.com.gh"
+                  placeholder="name@company.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-zinc-50 border border-zinc-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-[#18181B]"
+                  className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-[#F47721]/30 focus:border-[#F47721]"
+                />
+              </div>
+            </div>
+
+            {/* Model selector */}
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1">
+                Equipment Category / Model
+              </label>
+              <select
+                value={selectedModel}
+                onChange={(e) => setSelectedModel(e.target.value)}
+                className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-[#F47721]/30 focus:border-[#F47721]"
+              >
+                <option value="">-- Select Model or Equipment Category --</option>
+                <optgroup label="Excavators (21T - 25T)">
+                  {EQUIPMENT_DATA.filter((m) => m.category === 'excavator').map((m) => (
+                    <option key={m.id} value={`${m.manufacturer} ${m.model}`}>
+                      {m.manufacturer} {m.model} ({m.operatingWeight})
+                    </option>
+                  ))}
+                </optgroup>
+                <optgroup label="Wheel Loaders (3T - 12T Payload)">
+                  {EQUIPMENT_DATA.filter((m) => m.category === 'wheel-loader').map((m) => (
+                    <option key={m.id} value={`${m.manufacturer} ${m.model}`}>
+                      {m.manufacturer} {m.model} ({m.payloadCapacity || m.operatingWeight})
+                    </option>
+                  ))}
+                </optgroup>
+                <optgroup label="Cranes (Lifting 25T - 75T)">
+                  {EQUIPMENT_DATA.filter((m) => m.category === 'crane').map((m) => (
+                    <option key={m.id} value={`${m.manufacturer} ${m.model}`}>
+                      {m.manufacturer} {m.model} ({m.payloadCapacity || m.operatingWeight})
+                    </option>
+                  ))}
+                </optgroup>
+                <option value="General Machine Advice Needed">Other / General Fleet Requirement</option>
+              </select>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">
+                  Project Location in Ghana <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  placeholder="e.g. Tarkwa Mining Site / Kasoa Quarry"
+                  value={projectLocation}
+                  onChange={(e) => setProjectLocation(e.target.value)}
+                  className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-[#F47721]/30 focus:border-[#F47721]"
                 />
               </div>
 
-              <div>
-                <label className="block text-zinc-600 font-bold uppercase text-[10px] mb-1">
-                  Project Notes / Specifics
-                </label>
-                <textarea
-                  rows={2}
-                  placeholder="Duration, operator requirement, start date..."
-                  value={notes}
-                  onChange={(e) => setNotes(e.target.value)}
-                  className="w-full bg-zinc-50 border border-zinc-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-[#18181B]"
-                />
+              {serviceType === 'rental' && (
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 mb-1">
+                    Estimated Duration
+                  </label>
+                  <select
+                    value={duration}
+                    onChange={(e) => setDuration(e.target.value)}
+                    className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-[#F47721]/30 focus:border-[#F47721]"
+                  >
+                    <option>Daily / Short Term (&lt; 1 Month)</option>
+                    <option>1 to 3 Months</option>
+                    <option>3 to 6 Months</option>
+                    <option>6 to 12 Months</option>
+                    <option>Long-Term Project (1+ Year)</option>
+                  </select>
+                </div>
+              )}
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1">
+                Project Specifics or Machine Requirements
+              </label>
+              <textarea
+                rows={2}
+                placeholder="Include rock breaker lines, bucket capacity preference, site shift demands, or spare part serials..."
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+                className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-[#F47721]/30 focus:border-[#F47721]"
+              />
+            </div>
+
+            <div className="pt-2 flex items-center justify-between border-t border-slate-200">
+              <div className="flex items-center gap-1.5 text-[11px] text-slate-500">
+                <Shield className="w-3.5 h-3.5 text-[#082B4C]" />
+                <span>Commercial confidentiality guaranteed</span>
               </div>
 
               <button
                 type="submit"
-                className="w-full py-3 bg-[#18181B] hover:bg-[#E85D04] text-white font-bold text-xs uppercase tracking-wider rounded-lg transition-colors shadow flex items-center justify-center gap-2"
+                className="bg-[#F47721] hover:bg-[#D96213] text-white px-6 py-2.5 rounded-lg text-sm font-bold flex items-center gap-2 shadow-xs transition-all cursor-pointer"
               >
-                <Send className="w-4 h-4" />
-                <span>Submit Quotation Request</span>
+                <span>Submit Request</span>
+                <Send className="w-3.5 h-3.5" />
               </button>
-            </form>
-          )}
-        </div>
+            </div>
+          </form>
+        )}
       </div>
     </div>
   );

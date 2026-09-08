@@ -1,131 +1,138 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
 import React, { useState, useEffect } from 'react';
+import { PageId, EquipmentModel } from './types';
 import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { AboutSection } from './components/AboutSection';
-import { ServicesSection } from './components/ServicesSection';
-import { FleetShowcase } from './components/FleetShowcase';
-import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { QuoteModal } from './components/QuoteModal';
-import { Phone, MessageSquare } from 'lucide-react';
+import { EquipmentDetailModal } from './components/EquipmentDetailModal';
+import { SearchModal } from './components/SearchModal';
+import { HomePage } from './pages/HomePage';
+import { EquipmentPage } from './pages/EquipmentPage';
+import { RentalPage } from './pages/RentalPage';
+import { SalesSparesPage } from './pages/SalesSparesPage';
+import { AboutContactPage } from './pages/AboutContactPage';
 
 export default function App() {
+  const [currentPage, setCurrentPage] = useState<PageId>('home');
+
+  // Modal States
   const [quoteModalOpen, setQuoteModalOpen] = useState(false);
-  const [selectedService, setSelectedService] = useState('sales');
-  const [selectedModel, setSelectedModel] = useState('');
-  const [activeSection, setActiveSection] = useState('home');
-  const [showFloatingActions, setShowFloatingActions] = useState(false);
+  const [quotePreSelectedModel, setQuotePreSelectedModel] = useState<string | undefined>(undefined);
+  const [quoteDefaultService, setQuoteDefaultService] = useState<'rental' | 'sales' | 'spares'>('rental');
 
-  const handleOpenQuoteModal = (service?: string, model?: string) => {
-    if (service) setSelectedService(service);
-    if (model) setSelectedModel(model);
-    setQuoteModalOpen(true);
-  };
+  const [detailModalEquipment, setDetailModalEquipment] = useState<EquipmentModel | null>(null);
+  const [searchModalOpen, setSearchModalOpen] = useState(false);
 
-  const handleNavigateToFleet = () => {
-    const element = document.getElementById('fleet');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  // Scroll listener for floating action triggers and section highlights
+  // Sync hash routing on mount and popstate
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 300) {
-        setShowFloatingActions(true);
-      } else {
-        setShowFloatingActions(false);
-      }
-
-      // Check active sections (Strictly 5 pages)
-      const sections = ['home', 'about', 'services', 'fleet', 'contact'];
-      for (const sectionId of sections) {
-        const el = document.getElementById(sectionId);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 200 && rect.bottom >= 200) {
-            setActiveSection(sectionId);
-            break;
-          }
-        }
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '') as PageId;
+      if (['home', 'equipment', 'rental', 'sales-spares', 'about-contact'].includes(hash)) {
+        setCurrentPage(hash);
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    handleHashChange();
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
+  const navigateTo = (page: PageId) => {
+    setCurrentPage(page);
+    window.location.hash = page;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleOpenQuote = (
+    modelName?: string,
+    defaultService: 'rental' | 'sales' | 'spares' = 'rental'
+  ) => {
+    setQuotePreSelectedModel(modelName);
+    setQuoteDefaultService(defaultService);
+    setQuoteModalOpen(true);
+  };
+
+  const handleRentOrBuyFromDetail = (modelName: string, mode: 'rental' | 'sales') => {
+    handleOpenQuote(modelName, mode);
+  };
+
   return (
-    <div className="min-h-screen bg-zinc-50 text-zinc-900 flex flex-col font-sans selection:bg-[#E85D04] selection:text-white">
-      {/* Header & Navbar (5 Pages) */}
+    <div className="min-h-screen flex flex-col bg-[#F4F6F8] text-[#102A43] antialiased">
+      {/* Sticky Global Navigation */}
       <Navbar
-        onOpenQuoteModal={handleOpenQuoteModal}
-        activeSection={activeSection}
+        currentPage={currentPage}
+        onNavigate={navigateTo}
+        onOpenQuote={() => handleOpenQuote()}
+        onOpenSearch={() => setSearchModalOpen(true)}
       />
 
-      {/* Main Content (Strictly 5 Clear, Concise Sections) */}
-      <main className="flex-grow">
-        {/* Page 1: Home */}
-        <Hero
-          onOpenQuoteModal={handleOpenQuoteModal}
-          onNavigateToFleet={handleNavigateToFleet}
-        />
+      {/* Strict 5-Page View Renderer */}
+      <main className="flex-1">
+        {currentPage === 'home' && (
+          <HomePage
+            onNavigate={navigateTo}
+            onOpenQuote={handleOpenQuote}
+            onSelectEquipment={(eq) => setDetailModalEquipment(eq)}
+          />
+        )}
 
-        {/* Page 2: About Us */}
-        <AboutSection onOpenQuoteModal={handleOpenQuoteModal} />
+        {currentPage === 'equipment' && (
+          <EquipmentPage
+            onNavigate={navigateTo}
+            onOpenQuote={handleOpenQuote}
+            onSelectEquipment={(eq) => setDetailModalEquipment(eq)}
+          />
+        )}
 
-        {/* Page 3: Services */}
-        <ServicesSection onOpenQuoteModal={handleOpenQuoteModal} />
+        {currentPage === 'rental' && (
+          <RentalPage
+            onNavigate={navigateTo}
+            onOpenQuote={handleOpenQuote}
+          />
+        )}
 
-        {/* Page 4: Equipment Fleet */}
-        <FleetShowcase onOpenQuoteModal={handleOpenQuoteModal} />
+        {currentPage === 'sales-spares' && (
+          <SalesSparesPage
+            onNavigate={navigateTo}
+            onOpenQuote={handleOpenQuote}
+            onSelectEquipment={(eq) => setDetailModalEquipment(eq)}
+          />
+        )}
 
-        {/* Page 5: Contact Us */}
-        <ContactSection />
+        {currentPage === 'about-contact' && (
+          <AboutContactPage
+            onNavigate={navigateTo}
+            onOpenQuote={handleOpenQuote}
+          />
+        )}
       </main>
 
-      {/* Footer */}
-      <Footer onOpenQuoteModal={handleOpenQuoteModal} />
-
-      {/* Reusable Quote Modal */}
-      <QuoteModal
-        isOpen={quoteModalOpen}
-        onClose={() => {
-          setQuoteModalOpen(false);
-          setSelectedModel('');
-        }}
-        initialService={selectedService}
-        initialModel={selectedModel}
+      {/* Global Minimal Industrial Footer */}
+      <Footer
+        onNavigate={navigateTo}
+        onOpenQuote={handleOpenQuote}
       />
 
-      {/* Floating Action Buttons for Direct Inquiry */}
-      {showFloatingActions && (
-        <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-2.5 animate-in fade-in slide-in-from-bottom-3 duration-200">
-          <a
-            href="https://wa.me/233244567890?text=Hello%20Kamla%20Infra%20Ghana,%20I%20would%20like%20to%20inquire%20about%20equipment%20availability."
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Direct WhatsApp Inquiry"
-            className="h-12 w-12 rounded-full bg-[#25D366] text-white shadow-xl hover:scale-105 transition-all flex items-center justify-center border-2 border-white"
-          >
-            <MessageSquare className="w-6 h-6 fill-current" />
-          </a>
+      {/* Global Modals */}
+      <QuoteModal
+        isOpen={quoteModalOpen}
+        onClose={() => setQuoteModalOpen(false)}
+        preSelectedModel={quotePreSelectedModel}
+        defaultService={quoteDefaultService}
+      />
 
-          <button
-            onClick={() => handleOpenQuoteModal('sales')}
-            className="px-4 py-2.5 rounded-full bg-[#18181B] text-white shadow-xl hover:bg-[#09090B] transition-all flex items-center gap-2 text-xs font-bold border-2 border-white"
-          >
-            <Phone className="w-3.5 h-3.5 text-[#E85D04]" />
-            <span>Instant Quote</span>
-          </button>
-        </div>
-      )}
+      <EquipmentDetailModal
+        equipment={detailModalEquipment}
+        onClose={() => setDetailModalEquipment(null)}
+        onRentOrBuy={handleRentOrBuyFromDetail}
+      />
+
+      <SearchModal
+        isOpen={searchModalOpen}
+        onClose={() => setSearchModalOpen(false)}
+        onSelectEquipment={(eq) => {
+          setDetailModalEquipment(eq);
+        }}
+      />
     </div>
   );
 }
