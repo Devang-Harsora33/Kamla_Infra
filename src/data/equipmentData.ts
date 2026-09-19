@@ -15,7 +15,7 @@ export const EQUIPMENT_DATA: EquipmentModel[] = [
     applications: 'Infrastructure, Civil Utilities & Foundation Work',
     isPopular: true,
     availableFor: ['sale', 'rental'],
-    image: 'https://images.unsplash.com/photo-1578844251758-2f71da64c96f?q=80&w=1000&auto=format&fit=crop',
+    image: '/archive/XCMG XE210i.webp',
     highlights: ['High fuel economy', 'Proven Cummins engine', 'Heavy-duty steel boom']
   },
   {
@@ -31,7 +31,7 @@ export const EQUIPMENT_DATA: EquipmentModel[] = [
     applications: 'General Earthmoving, Roadworks & Urban Infra',
     isPopular: true,
     availableFor: ['sale', 'rental'],
-    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=1000&auto=format&fit=crop',
+    image: '/archive/XCMG XE215C.webp',
     highlights: ['Reinforced LC undercarriage', 'Precision pilot control', 'Severe climate cooling package']
   },
   {
@@ -46,7 +46,7 @@ export const EQUIPMENT_DATA: EquipmentModel[] = [
     undercarriageOrType: 'Heavy Duty LC',
     applications: 'Heavy Earthworks & Aggregate Loading',
     availableFor: ['sale', 'rental'],
-    image: 'https://images.unsplash.com/photo-1578844251758-2f71da64c96f?q=80&w=1000&auto=format&fit=crop',
+    image: '/archive/XCMG XE230C LC.webp',
     highlights: ['Heavy aggregate digging', 'Reinforced arm structure', 'High breakout force']
   },
   {
@@ -61,7 +61,7 @@ export const EQUIPMENT_DATA: EquipmentModel[] = [
     undercarriageOrType: 'Long Boom & Arm (15m reach)',
     applications: 'River Dredging, Slope Cutting & Deep Digging',
     availableFor: ['sale', 'rental'],
-    image: 'https://images.unsplash.com/photo-1541888946425-d0fbb186c5f8?q=80&w=1000&auto=format&fit=crop',
+    image: '/archive/XE215C.webp',
     highlights: ['15m long reach boom & arm', 'Counterweight balance system', 'Deep canal cleaning spec']
   },
   {
@@ -76,7 +76,7 @@ export const EQUIPMENT_DATA: EquipmentModel[] = [
     undercarriageOrType: 'Heavy Duty Track',
     applications: 'Quarry Loading, Crushing Plants & Road Works',
     availableFor: ['sale', 'rental'],
-    image: 'https://images.unsplash.com/photo-1578844251758-2f71da64c96f?q=80&w=1000&auto=format&fit=crop',
+    image: '/archive/XE230C LC.webp',
     highlights: ['Quarry-duty armored frame', 'Rock breaker hydraulic lines', 'Heavy stone loading bucket']
   },
   {
@@ -91,7 +91,7 @@ export const EQUIPMENT_DATA: EquipmentModel[] = [
     undercarriageOrType: 'Standard Track',
     applications: 'Infrastructure & General Earthmoving',
     availableFor: ['sale', 'rental'],
-    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=1000&auto=format&fit=crop',
+    image: '/archive/SANY SY335H.webp',
     highlights: ['DOMCS intelligent engine system', 'Low fuel consumption', 'Fast cycle time']
   },
   {
@@ -106,7 +106,7 @@ export const EQUIPMENT_DATA: EquipmentModel[] = [
     undercarriageOrType: 'Extra Long Arm (15m)',
     applications: 'River Dredging, Deep Canal & Tank Cleaning',
     availableFor: ['sale', 'rental'],
-    image: 'https://images.unsplash.com/photo-1541888946425-d0fbb186c5f8?q=80&w=1000&auto=format&fit=crop',
+    image: '/archive/SANY SY335H (2).webp',
     highlights: ['15m extra long reach arm', 'High stability counterweight', 'Precision hydraulic flow']
   },
   {
@@ -122,7 +122,7 @@ export const EQUIPMENT_DATA: EquipmentModel[] = [
     applications: 'Heavy Earthworks, Trenching & Aggregate Loading',
     isPopular: true,
     availableFor: ['sale', 'rental'],
-    image: 'https://images.unsplash.com/photo-1578844251758-2f71da64c96f?q=80&w=1000&auto=format&fit=crop',
+    image: '/archive/SANY SY365H.webp',
     highlights: ['SPARC heavy-duty series', 'Reinforced track rollers', 'Optimal Ghanaian soil penetration']
   },
   {
@@ -137,7 +137,7 @@ export const EQUIPMENT_DATA: EquipmentModel[] = [
     undercarriageOrType: 'Heavy Duty Track',
     applications: 'Quarrying, Hard Soil Digging & Stone Crushing Feed',
     availableFor: ['sale', 'rental'],
-    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=1000&auto=format&fit=crop',
+    image: '/archive/SANY SY365H.webp',
     highlights: ['Reinforced heavy boom', 'Quarry duty bucket teeth', 'High hydraulic pressure']
   },
   {
@@ -152,7 +152,7 @@ export const EQUIPMENT_DATA: EquipmentModel[] = [
     undercarriageOrType: 'Heavy Duty Mine Spec',
     applications: 'Rock Excavation, Quarries & Tough Earthwork',
     availableFor: ['sale', 'rental'],
-    image: 'https://images.unsplash.com/photo-1578844251758-2f71da64c96f?q=80&w=1000&auto=format&fit=crop',
+    image: '/archive/SY245H  SY245C-9.webp',
     highlights: ['Full mine-spec armor', 'Heavy rock bucket', 'Maximum uptime reliability']
   },
   {
@@ -167,7 +167,7 @@ export const EQUIPMENT_DATA: EquipmentModel[] = [
     undercarriageOrType: 'Long Crawler (LC)',
     applications: 'General Infra, Earthmoving, Construction & Quarrying',
     availableFor: ['sale', 'rental'],
-    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=1000&auto=format&fit=crop',
+    image: '/archive/Hitachi ZH210LC-5.webp',
     highlights: ['Iconic EX series reliability', 'High resale value', 'Simple mechanical systems']
   },
   {
@@ -182,7 +182,7 @@ export const EQUIPMENT_DATA: EquipmentModel[] = [
     undercarriageOrType: 'Heavy Duty LC',
     applications: 'Heavy Earthmoving, Road Construction & Quarrying',
     availableFor: ['sale', 'rental'],
-    image: 'https://images.unsplash.com/photo-1578844251758-2f71da64c96f?q=80&w=1000&auto=format&fit=crop',
+    image: '/archive/ZH210LC-5 Hybrid.webp',
     highlights: ['HIOS III hydraulic system', 'Extra durable steel structure', 'Comfortable AC cabin']
   },
   {
@@ -197,7 +197,7 @@ export const EQUIPMENT_DATA: EquipmentModel[] = [
     undercarriageOrType: 'Heavy Duty (H)',
     applications: 'Tough Excavation, Quarry Support & Stone Mining',
     availableFor: ['sale', 'rental'],
-    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=1000&auto=format&fit=crop',
+    image: '/archive/Hitachi ZH210LC-5.webp',
     highlights: ['Mining-grade H-arm', 'Heavy quarry counterweight', 'Robust dual fuel filtration']
   },
   {
@@ -212,7 +212,7 @@ export const EQUIPMENT_DATA: EquipmentModel[] = [
     undercarriageOrType: 'Heavy Duty LC',
     applications: 'Infrastructure, General Excavation & Earthworks',
     availableFor: ['sale', 'rental'],
-    image: 'https://images.unsplash.com/photo-1578844251758-2f71da64c96f?q=80&w=1000&auto=format&fit=crop',
+    image: '/archive/JCB JS210.webp',
     highlights: ['EcoMAX engine with zero downtime', 'LiveLink telematics', 'Heavy D-section frame']
   },
   {
@@ -227,7 +227,7 @@ export const EQUIPMENT_DATA: EquipmentModel[] = [
     undercarriageOrType: 'Mine Spec Track (LCM)',
     applications: 'Heavy Construction & Stone Quarry Loading',
     availableFor: ['sale', 'rental'],
-    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=1000&auto=format&fit=crop',
+    image: '/archive/JCB JS210 (2).webp',
     highlights: ['LCM high-clearance mine track', 'Reinforced idler area', 'High torque swing motor']
   },
   {
@@ -242,7 +242,7 @@ export const EQUIPMENT_DATA: EquipmentModel[] = [
     undercarriageOrType: 'Reduced Tail Swing',
     applications: 'Confined Workspaces, Urban Infra & Highway Projects',
     availableFor: ['sale', 'rental'],
-    image: 'https://images.unsplash.com/photo-1541888946425-d0fbb186c5f8?q=80&w=1000&auto=format&fit=crop',
+    image: '/archive/JCB JS210.webp',
     highlights: ['Reduced tail swing for narrow lanes', 'Massive lifting capacity', 'Full 360-degree cameras']
   },
   {
@@ -257,7 +257,7 @@ export const EQUIPMENT_DATA: EquipmentModel[] = [
     undercarriageOrType: 'Heavy Duty LC',
     applications: 'Mass Excavation, Quarry Support & Large Earthworks',
     availableFor: ['sale', 'rental'],
-    image: 'https://images.unsplash.com/photo-1578844251758-2f71da64c96f?q=80&w=1000&auto=format&fit=crop',
+    image: '/archive/JCB JS210 (2).webp',
     highlights: ['IntelliControl power selector', 'Large capacity fuel tank', 'Severe-duty hydraulic filtration']
   },
 
@@ -276,7 +276,7 @@ export const EQUIPMENT_DATA: EquipmentModel[] = [
     applications: 'Infrastructure, Aggregates & Batching Plants',
     isPopular: true,
     availableFor: ['sale', 'rental'],
-    image: 'https://images.unsplash.com/photo-1579762715118-a6f1d4b934f1?q=80&w=1000&auto=format&fit=crop',
+    image: '/archive/XCMG ZL30GV  LW300FN.webp',
     highlights: ['Agile 3-tonne payload', 'Fast hydraulic cycle time', 'Low operating expense']
   },
   {
@@ -293,7 +293,7 @@ export const EQUIPMENT_DATA: EquipmentModel[] = [
     applications: 'Quarry Loading, Port Logistics & Cement Plants',
     isPopular: true,
     availableFor: ['sale', 'rental'],
-    image: 'https://images.unsplash.com/photo-1618090584176-7132b9911657?q=80&w=1000&auto=format&fit=crop',
+    image: '/archive/XCMG ZL30E.webp',
     highlights: ['Workhorse 5-tonne rated capacity', 'Reinforced torque converter', 'Dust-sealed cabin']
   },
   {
@@ -309,7 +309,7 @@ export const EQUIPMENT_DATA: EquipmentModel[] = [
     undercarriageOrType: 'Zero-Emission Heavy Chassis',
     applications: 'Green Mining & Industrial Material Handling',
     availableFor: ['sale', 'rental'],
-    image: 'https://images.unsplash.com/photo-1579762715118-a6f1d4b934f1?q=80&w=1000&auto=format&fit=crop',
+    image: '/archive/XCMG ZL30GV  LW300FN.webp',
     highlights: ['Zero direct emissions', 'Instant high torque', '70% lower energy cost']
   },
   {
@@ -325,7 +325,7 @@ export const EQUIPMENT_DATA: EquipmentModel[] = [
     undercarriageOrType: 'Heavy Duty Articulated',
     applications: 'Heavy Aggregate Quarries & Bulk Coal Operations',
     availableFor: ['sale', 'rental'],
-    image: 'https://images.unsplash.com/photo-1618090584176-7132b9911657?q=80&w=1000&auto=format&fit=crop',
+    image: '/archive/XCMG ZL30GV  LW300FN.webp',
     highlights: ['6-tonne quarry spec', 'Load-sensing hydraulic steering', 'High dumping clearance']
   },
   {
@@ -341,7 +341,7 @@ export const EQUIPMENT_DATA: EquipmentModel[] = [
     undercarriageOrType: 'Mining Grade Chassis',
     applications: 'Iron Ore Mining & Steel Mill Material Handling',
     availableFor: ['sale', 'rental'],
-    image: 'https://images.unsplash.com/photo-1579762715118-a6f1d4b934f1?q=80&w=1000&auto=format&fit=crop',
+    image: '/archive/XCMG ZL30GV  LW300FN.webp',
     highlights: ['7-tonne heavy payload', 'Wet-axle braking system', 'Heavy mining counterweight']
   },
   {
@@ -357,7 +357,7 @@ export const EQUIPMENT_DATA: EquipmentModel[] = [
     undercarriageOrType: 'Ultra-Heavy Open-Pit Chassis',
     applications: 'Large Mining Open-pit Bulk Material Loading',
     availableFor: ['sale', 'rental'],
-    image: 'https://images.unsplash.com/photo-1618090584176-7132b9911657?q=80&w=1000&auto=format&fit=crop',
+    image: '/archive/XCMG ZL30E.webp',
     highlights: ['52 Ton operating monster', '12-tonne load per scoop', 'Ultra-durable open-pit mining frame']
   },
   {
@@ -373,7 +373,7 @@ export const EQUIPMENT_DATA: EquipmentModel[] = [
     undercarriageOrType: 'Articulated 4WD',
     applications: 'Sand/Gravel Loading, Crushing Plants & Construction',
     availableFor: ['sale', 'rental'],
-    image: 'https://images.unsplash.com/photo-1579762715118-a6f1d4b934f1?q=80&w=1000&auto=format&fit=crop',
+    image: '/archive/LiuGong 835H  835T.webp',
     highlights: ['Responsive pilot controls', 'High visibility panoramic cab', 'Fast cycle times']
   },
   {
@@ -389,7 +389,7 @@ export const EQUIPMENT_DATA: EquipmentModel[] = [
     undercarriageOrType: 'Heavy Duty Articulated',
     applications: 'Mining, Heavy Quarrying, Crushing & Port Material Handling',
     availableFor: ['sale', 'rental'],
-    image: 'https://images.unsplash.com/photo-1618090584176-7132b9911657?q=80&w=1000&auto=format&fit=crop',
+    image: '/archive/LiuGong 856H 856H MAX.webp',
     highlights: ['Cummins & ZF powertrain', 'High dump height', 'Heavy rock bucket']
   },
   {
@@ -405,7 +405,7 @@ export const EQUIPMENT_DATA: EquipmentModel[] = [
     undercarriageOrType: 'Zero-Emission Electric Chassis',
     applications: 'Zero-Emission Heavy Mining & Tunneling Operations',
     availableFor: ['sale', 'rental'],
-    image: 'https://images.unsplash.com/photo-1579762715118-a6f1d4b934f1?q=80&w=1000&auto=format&fit=crop',
+    image: '/archive/LiuGong 856H.webp',
     highlights: ['CATL heavy LFP battery', 'Fast DC charging', 'Quiet tunneling and underground compliance']
   },
   {
@@ -421,7 +421,7 @@ export const EQUIPMENT_DATA: EquipmentModel[] = [
     undercarriageOrType: 'Heavy Duty Articulated',
     applications: 'Coal Handling, Mining & Heavy Quarry Loading',
     availableFor: ['sale', 'rental'],
-    image: 'https://images.unsplash.com/photo-1618090584176-7132b9911657?q=80&w=1000&auto=format&fit=crop',
+    image: '/archive/LiuGong 856H (2).webp',
     highlights: ['Heavy aggregate bucket', 'Auto-lubrication system', 'High-speed cycle handling']
   },
   {
@@ -437,7 +437,7 @@ export const EQUIPMENT_DATA: EquipmentModel[] = [
     undercarriageOrType: 'Severe-Duty Mining Chassis',
     applications: 'Large Ore Mines, Steel Plants & Port Bulk Handling',
     availableFor: ['sale', 'rental'],
-    image: 'https://images.unsplash.com/photo-1579762715118-a6f1d4b934f1?q=80&w=1000&auto=format&fit=crop',
+    image: '/archive/LiuGong 856H.webp',
     highlights: ['7-tonne high payload', 'Reinforced chassis joint pins', 'Heavy tire protection packages']
   },
   {
@@ -453,7 +453,7 @@ export const EQUIPMENT_DATA: EquipmentModel[] = [
     undercarriageOrType: 'Heavy Duty Open-Cast Chassis',
     applications: 'Heavy Duty Open-cast Mining & Ore Rehandling',
     availableFor: ['sale', 'rental'],
-    image: 'https://images.unsplash.com/photo-1618090584176-7132b9911657?q=80&w=1000&auto=format&fit=crop',
+    image: '/archive/LiuGong 856H 856H MAX.webp',
     highlights: ['8-tonne open-cast spec', 'ZF automated transmission', 'Integrated load scale']
   },
   {
@@ -469,7 +469,7 @@ export const EQUIPMENT_DATA: EquipmentModel[] = [
     undercarriageOrType: 'Ultra-Heavy Mining Chassis',
     applications: 'Ultra-Heavy Mining & Large Open-pit Loading',
     availableFor: ['sale', 'rental'],
-    image: 'https://images.unsplash.com/photo-1579762715118-a6f1d4b934f1?q=80&w=1000&auto=format&fit=crop',
+    image: '/archive/LiuGong 856H (2).webp',
     highlights: ['50 Ton production capacity', '12m³ rock bucket', 'Built for continuous 24/7 mine shifts']
   },
 
