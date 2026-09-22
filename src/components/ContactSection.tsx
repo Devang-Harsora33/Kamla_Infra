@@ -54,16 +54,10 @@ export const ContactSection: React.FC = () => {
                 Phone & Direct Hotline
               </span>
               <a
-                href="tel:+233302984500"
+                href="tel:+233552538551"
                 className="text-lg font-bold text-zinc-900 hover:text-[#18181B] block"
               >
-                +233 (0) 30 298 4500
-              </a>
-              <a
-                href="tel:+233244567890"
-                className="text-sm font-semibold text-zinc-700 hover:text-[#E85D04] block mt-0.5"
-              >
-                +233 (0) 24 456 7890 (Mobile & WhatsApp)
+                +233 55 253 8551
               </a>
               <p className="text-xs text-zinc-500 mt-2">
                 Available Monday to Saturday, 7:30 AM – 6:00 PM GMT
@@ -79,16 +73,10 @@ export const ContactSection: React.FC = () => {
                 Official Email Inquiries
               </span>
               <a
-                href="mailto:quotes@kamlainfra.com"
+                href="mailto:KamlainfraGhana@gmail.com"
                 className="text-base font-bold text-zinc-900 hover:text-[#18181B] block"
               >
-                quotes@kamlainfra.com
-              </a>
-              <a
-                href="mailto:info@kamlainfra.com"
-                className="text-sm font-semibold text-zinc-700 hover:text-[#18181B] block mt-0.5"
-              >
-                info@kamlainfra.com
+                KamlainfraGhana@gmail.com
               </a>
               <p className="text-xs text-zinc-500 mt-2">
                 Formal RFQs & tenders reviewed within 4 business hours.
@@ -101,19 +89,19 @@ export const ContactSection: React.FC = () => {
                 <MapPin className="w-5 h-5 text-[#E85D04]" />
               </div>
               <span className="text-xs font-bold uppercase tracking-wider text-zinc-500 block mb-1">
-                Office & Heavy Equipment Yard
+                Registered Address
               </span>
               <strong className="text-sm font-bold text-zinc-900 block">
-                Plot 14, Tema Heavy Industrial Area, Greater Accra Region, Ghana
+                House Number 46, 46 Abakan Street, Adjacent MTN Mast, Adenta, Accra, La Nkwantanang-Madina, Greater Accra, Ghana
               </strong>
               <p className="text-xs text-zinc-600 mt-1">
-                Commercial Office & Client Lounge: Spintex Road Commercial Corridor, Accra, Ghana
+                Ghana Post GPS (Digital Address): GM-065-1905
               </p>
             </div>
 
             {/* WhatsApp Quick Connect Card */}
             <a
-              href="https://wa.me/233244567890?text=Hello%20Kamla%20Infra%20Ghana,%20I%20would%20like%20to%20request%20equipment%20availability."
+              href="https://wa.me/233552538551?text=Hello%20Kamla%20Infra%20Ghana,%20I%20would%20like%20to%20request%20equipment%20availability."
               target="_blank"
               rel="noopener noreferrer"
               className="p-5 rounded-2xl bg-[#09090B] text-white flex items-center justify-between hover:bg-[#18181B] transition-all group shadow-md"

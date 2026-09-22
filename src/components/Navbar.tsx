@@ -58,11 +58,11 @@ export const Navbar: React.FC<NavbarProps> = ({
             </span>
             <span className="text-slate-600">|</span>
             <a
-              href="tel:+233240000000"
+              href="tel:+233552538551"
               className="flex items-center gap-1.5 font-semibold text-white hover:text-[#F47721] transition-colors"
             >
               <PhoneCall className="w-3.5 h-3.5 text-[#F47721]" />
-              <span>+233 (0) 50 123 4567</span>
+              <span>+233 55 253 8551</span>
             </a>
           </div>
         </div>
@@ -201,7 +201,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <div className="text-xs text-slate-500 space-y-1 text-center pt-2">
                 <p className="font-semibold text-slate-700">Kamla Infra Ghana Ltd.</p>
                 <p>Heavy Equipment Sales • Rental • Spares</p>
-                <p className="text-slate-400">Accra, Ghana • +233 (0) 50 123 4567</p>
+                <p className="text-slate-400">Accra, Ghana • +233 55 253 8551</p>
               </div>
             </div>
           </div>

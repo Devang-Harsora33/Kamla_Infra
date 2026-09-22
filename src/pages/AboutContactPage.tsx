@@ -216,10 +216,11 @@ export const AboutContactPage: React.FC<AboutContactPageProps> = ({ onNavigate, 
                 <div className="p-4 rounded-xl bg-[#F4F6F8] border border-slate-200 space-y-1">
                   <div className="flex items-center gap-2 text-sm font-bold text-[#082B4C]">
                     <Building2 className="w-4 h-4 text-[#F47721]" />
-                    <span>Accra Head Office &amp; Heavy Fleet Yard</span>
+                    <span>Registered Address</span>
                   </div>
                   <p className="text-slate-600 pl-6">
-                    Industrial Area, Spintex Corridor / Tema Expressway, Greater Accra Region, Ghana
+                    House Number 46, 46 Abakan Street, Adjacent MTN Mast, Adenta, Accra, La Nkwantanang-Madina, Greater Accra, Ghana<br />
+                    Ghana Post GPS (Digital Address): GM-065-1905
                   </p>
                 </div>
 
@@ -242,7 +243,7 @@ export const AboutContactPage: React.FC<AboutContactPageProps> = ({ onNavigate, 
                   </div>
                   <div>
                     <span className="text-slate-400 block text-[10px] font-bold uppercase">Commercial Phone</span>
-                    <span className="font-bold text-[#082B4C] text-sm">+233 (0) 50 123 4567 / +233 (0) 24 987 6543</span>
+                    <span className="font-bold text-[#082B4C] text-sm">+233 55 253 8551</span>
                   </div>
                 </div>
 
@@ -252,7 +253,7 @@ export const AboutContactPage: React.FC<AboutContactPageProps> = ({ onNavigate, 
                   </div>
                   <div>
                     <span className="text-slate-400 block text-[10px] font-bold uppercase">Direct Email</span>
-                    <span className="font-bold text-[#082B4C] text-sm">sales@kamlainfra.com • info@kamlainfra.com</span>
+                    <span className="font-bold text-[#082B4C] text-sm">KamlainfraGhana@gmail.com</span>
                   </div>
                 </div>
 

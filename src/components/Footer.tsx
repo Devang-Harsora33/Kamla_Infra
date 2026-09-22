@@ -32,15 +32,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote }) => {
             <div className="pt-2 flex flex-col gap-2.5 text-xs text-slate-300">
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-[#F47721] shrink-0 mt-0.5" />
-                <span>Heavy Industrial Area, Spintex Road / Tema Corridor, Greater Accra, Ghana</span>
+                <span>House Number 46, 46 Abakan Street, Adjacent MTN Mast, Adenta, Accra, La Nkwantanang-Madina, Greater Accra, Ghana<br/>Ghana Post GPS (Digital Address): GM-065-1905</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-[#F47721] shrink-0" />
-                <span>+233 (0) 50 123 4567 / +233 (0) 24 987 6543</span>
+                <span>+233 55 253 8551</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-[#F47721] shrink-0" />
-                <span>sales@kamlainfra.com • support@kamlainfra.com</span>
+                <span>KamlainfraGhana@gmail.com</span>
               </div>
             </div>
 

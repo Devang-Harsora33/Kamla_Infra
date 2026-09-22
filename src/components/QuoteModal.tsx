@@ -121,7 +121,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                 Done
               </button>
               <a
-                href="tel:+233501234567"
+                href="tel:+233552538551"
                 className="inline-flex items-center justify-center gap-2 border border-slate-300 hover:bg-slate-50 text-slate-800 px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors"
               >
                 <Phone className="w-4 h-4 text-[#F47721]" />

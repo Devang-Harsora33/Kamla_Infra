@@ -7,7 +7,7 @@ interface LogoProps {
 }
 
 export const Logo: React.FC<LogoProps> = ({
-  className = 'h-10',
+  className = 'h-14 sm:h-16',
   variant = 'dark',
   showSubtext = true,
 }) => {
@@ -18,55 +18,49 @@ export const Logo: React.FC<LogoProps> = ({
 
   return (
     <div className={`flex items-center gap-3.5 select-none ${className}`}>
-      {/* Precision Vector Monogram 'K' with Excavator Boom & Bucket */}
+      <img 
+        src="/logo.webp" 
+        alt="Kamla Infra Logo" 
+        className="h-14 sm:h-16 lg:h-72 w-20 sm:w-64 object-contain"
+      />
+      {/* 
+      Precision Vector Monogram 'K' with Excavator Boom & Bucket
       <svg
         viewBox="0 0 160 160"
         className="h-10 w-10 sm:h-11 sm:w-11 shrink-0 overflow-visible"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* Left vertical navy stem */}
         <rect x="20" y="24" width="22" height="112" rx="2" fill={navyColor} />
-
-        {/* Top diagonal boom arm (Navy) */}
         <path
           d="M48 92L96 32H118L68 94L48 92Z"
           fill={navyColor}
         />
-
-        {/* Hydraulic boom extension & stick */}
         <path
           d="M102 32L124 64L114 70L96 36L102 32Z"
           fill={navyColor}
         />
-
-        {/* Stylized Excavator Bucket (Orange #F47721) */}
         <path
           d="M118 62C124 64 133 73 133 82C133 91 125 96 112 96C103 96 102 88 108 79L120 62H118Z"
           fill={orangeColor}
         />
-        {/* Bucket teeth accent */}
         <path
           d="M112 96L108 102M118 96L116 102M124 95L123 101"
           stroke={orangeColor}
           strokeWidth="2.5"
           strokeLinecap="round"
         />
-
-        {/* Lower diagonal inner chevron (Orange #F47721) */}
         <path
           d="M50 78L90 126H114L70 78H50Z"
           fill={orangeColor}
         />
-
-        {/* Lower outer navy chevron */}
         <path
           d="M68 110L88 136H114L90 106L68 110Z"
           fill={navyColor}
         />
       </svg>
 
-      {/* Brand Typography */}
+      Brand Typography
       <div className="flex flex-col justify-center leading-tight">
         <div className="flex items-baseline gap-1.5">
           <span
@@ -91,6 +85,7 @@ export const Logo: React.FC<LogoProps> = ({
           </div>
         )}
       </div>
+      */}
     </div>
   );
 };

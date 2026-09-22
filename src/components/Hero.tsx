@@ -253,11 +253,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuoteModal, onNavigateToFleet 
                   <Zap className="w-3.5 h-3.5 text-[#E85D04]" /> Urgent Project Needs?
                 </span>
                 <a
-                  href="tel:+233244567890"
+                  href="tel:+233552538551"
                   className="text-[#18181B] hover:text-[#E85D04] font-bold flex items-center gap-1 transition-colors"
                 >
                   <PhoneCall className="w-3 h-3 text-[#E85D04]" />
-                  <span>Call +233 (0) 24 456 7890</span>
+                  <span>Call +233 55 253 8551</span>
                 </a>
               </div>
             </div>

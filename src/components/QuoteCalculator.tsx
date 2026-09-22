@@ -44,7 +44,7 @@ export const QuoteCalculator: React.FC = () => {
 - Operator Required: ${needOperator ? 'Yes' : 'No'}
 - Client: ${fullName || 'Contractor'} (${companyName || 'Private'})
 - Phone: ${phone}`;
-    return `https://wa.me/233244567890?text=${encodeURIComponent(text)}`;
+    return `https://wa.me/233552538551?text=${encodeURIComponent(text)}`;
   };
 
   return (
