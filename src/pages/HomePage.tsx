@@ -4,7 +4,6 @@ import { EQUIPMENT_DATA } from '../data/equipmentData';
 import {
   ArrowRight,
   ChevronRight,
-  ChevronLeft,
   ShieldCheck,
   CheckCircle2,
   Calendar,
@@ -24,35 +23,23 @@ interface HomePageProps {
 
 interface HeroSlide {
   id: string;
-  image: string;
+  video: string;
   alt: string;
   category: string;
 }
 
 const HERO_SLIDES: HeroSlide[] = [
   {
-    id: 'slide-excavator',
-    image: 'https://images.unsplash.com/photo-1578844251758-2f71da64c96f?q=80&w=2400&auto=format&fit=crop',
-    alt: 'Kamla Infra Heavy Crawler Excavator Inventory',
-    category: 'Excavator',
+    id: 'slide-video-1',
+    video: '/assets/video-1.webm',
+    alt: 'Kamla Infra Heavy Machinery Video 1',
+    category: 'Heavy Machinery',
   },
   {
-    id: 'slide-wheel-loader-heavy',
-    image: 'https://images.unsplash.com/photo-1618090584176-7132b9911657?q=80&w=2400&auto=format&fit=crop',
-    alt: 'Kamla Infra Heavy Wheel Loader Inventory',
-    category: 'Wheel Loader',
-  },
-  {
-    id: 'slide-articulated-loader',
-    image: 'https://images.unsplash.com/photo-1579762715118-a6f1d4b934f1?q=80&w=2400&auto=format&fit=crop',
-    alt: 'Kamla Infra Articulated Wheel Loader Inventory',
-    category: 'Wheel Loader',
-  },
-  {
-    id: 'slide-crane',
-    image: 'https://images.unsplash.com/photo-1508873696983-2df5293cb32b?q=80&w=2400&auto=format&fit=crop',
-    alt: 'Kamla Infra All-Terrain Mobile Crane Inventory',
-    category: 'Crane',
+    id: 'slide-video-2',
+    video: '/assets/video-2.webm',
+    alt: 'Kamla Infra Heavy Machinery Video 2',
+    category: 'Construction',
   },
 ];
 
@@ -70,7 +57,7 @@ export const HomePage: React.FC<HomePageProps> = ({
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlideIndex((prev) => (prev + 1) % HERO_SLIDES.length);
-    }, 5000);
+    }, 15000);
     return () => clearInterval(timer);
   }, []);
 
@@ -85,53 +72,69 @@ export const HomePage: React.FC<HomePageProps> = ({
   return (
     <div className="w-full">
       {/* ----------------- BIG HERO IMAGE SECTION (CONTENT ONLY IMAGE) ----------------- */}
-      <section className="relative w-full h-[65vh] sm:h-[75vh] lg:h-[84vh] min-h-[480px] max-h-[820px] bg-[#F4F6F8] overflow-hidden border-b border-slate-200">
+      <section className="relative w-full h-[calc(100vh-80px)] min-h-[600px] bg-[#09090B] overflow-hidden border-b border-slate-800">
+        {/* Background Overlay for better contrast */}
+        <div className="absolute inset-0 bg-black/40 z-10 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#09090B] via-transparent to-[#09090B]/30 z-10 pointer-events-none" />
+
         {HERO_SLIDES.map((slide, index) => {
           const isActive = index === currentSlideIndex;
           return (
             <div
               key={slide.id}
-              onClick={() => onNavigate('equipment')}
-              className={`absolute inset-0 transition-opacity duration-700 ease-in-out cursor-pointer ${
-                isActive ? 'opacity-100 z-10' : 'opacity-0 pointer-events-none z-0'
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                isActive ? 'opacity-100 z-0' : 'opacity-0 pointer-events-none z-0'
               }`}
             >
-              <img
-                src={slide.image}
-                alt={slide.alt}
-                className="w-full h-full object-cover select-none"
-                referrerPolicy="no-referrer"
+              <video
+                src={slide.video}
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-cover select-none filter contrast-125 saturate-110"
               />
             </div>
           );
         })}
 
-        {/* Left Arrow Navigation */}
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            prevSlide();
-          }}
-          aria-label="Previous machinery image"
-          className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/90 hover:bg-white text-[#082B4C] hover:text-[#F47721] flex items-center justify-center shadow-lg transition-all cursor-pointer border border-slate-200 backdrop-blur-xs active:scale-95"
-        >
-          <ChevronLeft className="w-6 h-6" />
-        </button>
-
-        {/* Right Arrow Navigation */}
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            nextSlide();
-          }}
-          aria-label="Next machinery image"
-          className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/90 hover:bg-white text-[#082B4C] hover:text-[#F47721] flex items-center justify-center shadow-lg transition-all cursor-pointer border border-slate-200 backdrop-blur-xs active:scale-95"
-        >
-          <ChevronRight className="w-6 h-6" />
-        </button>
+        {/* Overlay Content */}
+        <div className="absolute inset-0 z-20 flex flex-col justify-center items-center text-center px-4 sm:px-6 lg:px-8 pointer-events-none">
+          <div className="max-w-5xl mx-auto space-y-6 sm:space-y-8">
+            <span className="inline-block py-1.5 px-4 rounded-full bg-[#082B4C]/80 text-[#F47721] text-xs sm:text-sm font-bold uppercase tracking-widest backdrop-blur-md border border-[#F47721]/30">
+              Kamla Infra Ghana Ltd.
+            </span>
+            
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white uppercase tracking-tight drop-shadow-2xl leading-[1.1]">
+              Powering Ghana's <br className="hidden sm:block" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F47721] to-[#ffca3a]">Infrastructure</span>
+            </h1>
+            
+            <p className="text-lg sm:text-xl md:text-2xl text-slate-200 max-w-3xl mx-auto font-medium drop-shadow-lg leading-relaxed">
+              Premium Heavy Machinery Sales, Reliable Fleet Rentals &amp; Genuine Spare Parts across the Republic of Ghana.
+            </p>
+            
+            <div className="pt-8 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 pointer-events-auto">
+              <button
+                onClick={() => onNavigate('equipment')}
+                className="w-full sm:w-auto bg-[#F47721] hover:bg-[#d96213] text-white px-8 py-4 rounded-lg font-bold uppercase tracking-wider transition-all transform hover:-translate-y-1 shadow-[0_8px_30px_rgb(244,119,33,0.3)] hover:shadow-[0_8px_30px_rgb(244,119,33,0.5)] flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <span>Explore Fleet</span>
+                <ArrowRight className="w-5 h-5" />
+              </button>
+              
+              <button
+                onClick={() => onOpenQuote()}
+                className="w-full sm:w-auto bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white px-8 py-4 rounded-lg font-bold uppercase tracking-wider transition-all transform hover:-translate-y-1 shadow-xl flex items-center justify-center gap-2 cursor-pointer"
+              >
+                Request Quote
+              </button>
+            </div>
+          </div>
+        </div>
 
         {/* Minimal Dots Indicator */}
-        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 bg-white/85 backdrop-blur-sm px-3.5 py-1.5 rounded-full border border-slate-200 shadow-md">
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3 bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-white/10">
           {HERO_SLIDES.map((slide, index) => (
             <button
               key={slide.id}
@@ -139,11 +142,11 @@ export const HomePage: React.FC<HomePageProps> = ({
                 e.stopPropagation();
                 setCurrentSlideIndex(index);
               }}
-              aria-label={`Show ${slide.category} machinery image`}
+              aria-label={`Show ${slide.category} machinery video`}
               className={`transition-all rounded-full cursor-pointer ${
                 index === currentSlideIndex
-                  ? 'w-7 h-2.5 bg-[#F47721]'
-                  : 'w-2.5 h-2.5 bg-slate-300 hover:bg-slate-500'
+                  ? 'w-8 h-2.5 bg-[#F47721] shadow-[0_0_10px_rgba(244,119,33,0.6)]'
+                  : 'w-2.5 h-2.5 bg-white/50 hover:bg-white'
               }`}
             />
           ))}

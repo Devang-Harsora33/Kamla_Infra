@@ -10,28 +10,40 @@ interface HeroProps {
 export const Hero: React.FC<HeroProps> = ({ onOpenQuoteModal, onNavigateToFleet }) => {
   const [quickTab, setQuickTab] = useState<'sales' | 'rental' | 'trading'>('sales');
 
+  const [currentVideo, setCurrentVideo] = useState(0);
+  const videos = ['/assets/video-1.mp4', '/assets/video-2.mp4'];
+
+  const handleVideoEnd = () => {
+    setCurrentVideo((prev) => (prev + 1) % videos.length);
+  };
+
   return (
     <section id="home" className="relative bg-[#09090B] text-white overflow-hidden">
-      {/* Background Graphic & Subtle Architectural Grid */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#09090B] via-[#18181B] to-[#081F33] opacity-95" />
+      {/* Background Videos */}
+      <div className="absolute inset-0 overflow-hidden">
+        <video
+          key={currentVideo}
+          autoPlay
+          muted
+          playsInline
+          onEnded={handleVideoEnd}
+          className="absolute inset-0 w-full h-full object-cover opacity-40"
+          src={videos[currentVideo]}
+          style={{ pointerEvents: 'none' }}
+        />
+        {/* Gradient overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#09090B] via-[#09090B]/80 to-transparent" />
+      </div>
+
+      {/* Subtle Architectural Grid */}
       <div
-        className="absolute inset-0 opacity-10"
+        className="absolute inset-0 opacity-10 pointer-events-none"
         style={{
           backgroundImage: `radial-gradient(#E85D04 1px, transparent 1px), radial-gradient(#FFFFFF 1px, transparent 1px)`,
           backgroundSize: '40px 40px',
           backgroundPosition: '0 0, 20px 20px',
         }}
       />
-
-      {/* Subtle Construction Machine Overlay Graphic */}
-      <div className="absolute right-0 bottom-0 top-0 w-1/2 opacity-15 pointer-events-none hidden lg:block overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1200&q=80"
-          alt="Heavy Excavator at work"
-          className="w-full h-full object-cover object-center mix-blend-luminosity filter contrast-125"
-        />
-        <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#09090B]/60 to-[#09090B]" />
-      </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-36">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
